@@ -1,0 +1,13 @@
+/* .dashboard_wrapper{
+    background-color: #cccccc;
+    height: 100vh;
+    color:#0E254B;
+  } */
+
+.dash_pic{
+    height: 60px;
+    
+}
+.dash_pic img{
+    height:100%;
+}

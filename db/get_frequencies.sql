@@ -1,0 +1,1 @@
+select frequency from frequencies;

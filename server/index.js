@@ -102,6 +102,8 @@ app.get('/auth/logout', (req, res) => {
 })
 
 app.get('/frequencies', controller.getFrequencies)
+app.get('/reminders/:id', controller.getUserReminders)
+
 app.post('/addReminderTemplate', controller.addReminderTemplate)
 app.post('/addReminderInstance', controller.addReminderInstance)
 

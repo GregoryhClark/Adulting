@@ -3,11 +3,26 @@
     height: 100vh;
     color:#0E254B;
   } */
-
+.dashboard_master table{
+    margin:auto;
+}
 .dash_pic{
-    height: 60px;
+    height: 90px;
+    text-align: left;
     
 }
 .dash_pic img{
     height:100%;
+}
+.dash_span {
+    height: 100vh;
+    background-color:pink;
+}
+.dash_table {
+    background: gray;
+    border-radius: 15px;
+    padding: 20px;
+}
+.user_name_div {
+    text-align: left;
 }

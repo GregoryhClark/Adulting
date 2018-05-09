@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUser, getFrequencies } from './../../ducks/users';
+import { getUser, getFrequencies, getUserReminders } from './../../ducks/users';
 import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
 import axios from 'axios';
@@ -15,11 +15,12 @@ class Dummy_Data extends Component {
     
     componentDidMount() {
 
-        this.props.getUser()
-            .then((res) => {
-                 console.log('here it is!', res.value)
-            })
-        this.props.getFrequencies()
+        // this.props.getUser()
+        //     .then((res) => {
+        //         this.props.getUserReminders(res.value.id)
+        //     })
+        // this.props.getFrequencies()
+       
 
     }
     createReminderTemplate(frequency, title){
@@ -68,7 +69,7 @@ class Dummy_Data extends Component {
 
     render() {
         const user = this.props.user;
-        console.log(document.getElementById('reminder_template_select'))
+        // console.log(this.props.userReminders)
 
         let currentFrequencies = this.props.frequencies.length > 0 ? this.props.frequencies.map((frequency, index) => {
             return (
@@ -120,11 +121,12 @@ class Dummy_Data extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { user, frequencies } = state
+    const { user, frequencies, userReminders } = state
     return {
         user,
-        frequencies
+        frequencies,
+        userReminders
     }
 }
 
-export default connect(mapStateToProps, { getUser, getFrequencies })(Dummy_Data)
+export default connect(mapStateToProps, { getUser, getFrequencies, getUserReminders })(Dummy_Data)

@@ -4,13 +4,13 @@ const initialState = {
     user: {},
     navbarSlide: false,
     frequencies: [],
-
+    userReminders: []
 }
-
 
 //action Types go here:
 const GET_USER = 'GET_USER';
 const GET_FREQUENCIES = 'GET_FREQUENCIES';
+const GET_USER_REMINDERS = 'GET_USER_REMINDERS';
 
 
 export default function reducer(state = initialState, action) {
@@ -20,6 +20,9 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { user: action.payload });
         case GET_FREQUENCIES + '_FULFILLED':
             return Object.assign({}, state, { frequencies: action.payload });
+        case GET_USER_REMINDERS + '_FULFILLED':
+            return Object.assign({}, state, { userReminders: action.payload });
+
 
         default:
             return state;
@@ -45,5 +48,15 @@ export default function reducer(state = initialState, action) {
         return {
             type: GET_FREQUENCIES,
             payload: frequencies
+        }
+    }
+    export function getUserReminders(id) {
+        let userReminders = axios.get(`/reminders/${id}`)
+            .then(res => {
+                return res.data;
+            })
+        return {
+            type: GET_USER_REMINDERS,
+            payload: userReminders
         }
     }

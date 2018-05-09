@@ -15,6 +15,13 @@ getFrequencies: (req, res) => {
         .catch(() => res.status(500).send())
        
 },
+getUserReminders: (req, res) => {
+    const db = req.app.get('db');
+    db.get_user_reminders([req.params.id])
+        .then((reminders) => { res.status(200).send(reminders) })
+        .catch(() => res.status(500).send())
+},
+
 addReminderTemplate: (req, res) => {
     const db = req.app.get('db');
     const { user, title, frequency} = req.body;
@@ -28,7 +35,6 @@ addReminderInstance: (req, res) => {
     db.add_reminder_instance([userId, instanceId, startDate, startHour, startMin, endDate, endHour, endMin])
         .then((instance) => { res.status(200).send(instance) })
         .catch(() => res.status(500).send())
-},
-
+}
     
 }

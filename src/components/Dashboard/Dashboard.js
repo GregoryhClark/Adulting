@@ -26,7 +26,7 @@ class Dashboard extends Component {
             return (
                 <tr>
                     <td>{reminder.title}</td>
-                    <td>{reminder.start_date}</td>
+                    <td>{reminder.start_date.substring(0, 10)}</td>
                     <td>{reminder.frequency}</td>
                 </tr>
             )
@@ -40,20 +40,32 @@ class Dashboard extends Component {
                 <div className="dash_pic">
                     {user ? <img src={user.profile_img} alt='user profile' /> : null}
                 </div>
-                <div className="user_name_div">{user.first_name} {user.last_name}</div>
+                <div className="user_name_div">
+                    {user.first_name} {user.last_name}
 
-                <div className="dash_span">
-                    <h1>Coming Up</h1>
-                    <table className="dash_table">
-                        <tbody>
-                            <tr>
-                                <th>Title</th>
-                                <th>Start Date</th>
-                                <th>Frequency</th>
-                            </tr>
-                            {remindersToDisplay}
-                        </tbody>
-                    </table>
+                    <button className="btn_take_survey">Take Survey</button>
+
+                </div>
+
+                <div className="dash_div">
+
+                <div className="right_column">
+                    <h3>Suggested</h3>
+                </div>
+
+                    <div className="dash_table_wrapper">
+                        <h1 className="main_h1">Coming Up</h1>
+                        <table className="dash_table">
+                            <tbody>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Start Date</th>
+                                    <th>Frequency</th>
+                                </tr>
+                                {remindersToDisplay}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         )

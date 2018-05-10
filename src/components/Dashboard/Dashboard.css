@@ -7,22 +7,52 @@
     margin:auto;
 }
 .dash_pic{
-    height: 90px;
+    width:17%;
     text-align: left;
     
 }
 .dash_pic img{
-    height:100%;
+    width:100%;
 }
-.dash_span {
-    height: 100vh;
-    background-color:pink;
+.dash_div {
+    position: absolute;
+    z-index: -1;
+    top:48px;
+    height: 100%;
+    width: 100%;
+    background-color:lightskyblue;
+}
+.dash_table_wrapper{
+    position: relative;
+    top:-21px;
+    background-color: #ffffff;
+    width:66%;
+    margin-left:auto;
+    margin-right:auto;
+    height: 100%;
 }
 .dash_table {
-    background: gray;
     border-radius: 15px;
     padding: 20px;
 }
 .user_name_div {
-    text-align: left;
+    text-align: center;
+    width:17%;
+    margin-top:10px;
+}
+.main_h1{
+    padding-top:30px;
+}
+.btn_take_survey{
+    margin-top:50px;
+    padding: 10px;
+    font-size: 20px;
+}
+.right_column{
+    position: absolute;
+    right:0;
+    width:17%;
+}
+.right_column h3{
+    margin-top:25px;
 }

@@ -34,11 +34,15 @@
 .dash_table {
     border-radius: 15px;
     padding: 20px;
+    text-align: left;
 }
 .user_name_div {
     text-align: center;
     width:17%;
     margin-top:10px;
+}
+.dash_table td, th{
+    padding: 10px 15px;
 }
 .main_h1{
     padding-top:30px;

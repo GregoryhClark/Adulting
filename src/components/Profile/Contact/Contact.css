@@ -1,0 +1,28 @@
+.contact_master{
+    display: grid;
+    grid-template-rows:55px 55px 55px 55px  
+}
+.user_contact_email{
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+}
+.contact_master h4{
+    padding-right: 35px;
+}
+.button_edit_email{
+    /* float: right; */
+    height: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.user_contact_mobile{
+    grid-row:3;
+    display: flex;
+    flex-direction: row;
+}
+.button_edit_mobile{
+    height: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+}

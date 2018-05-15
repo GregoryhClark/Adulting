@@ -13,7 +13,7 @@ class Dummy_Data extends Component {
         }
     }
     
-    componentDidMount() {
+    // componentDidMount() {
 
         // this.props.getUser()
         //     .then((res) => {
@@ -22,7 +22,7 @@ class Dummy_Data extends Component {
         // this.props.getFrequencies()
        
 
-    }
+    // }
     createReminderTemplate(frequency, title){
         let templateObj = {
             user: this.props.user.id,

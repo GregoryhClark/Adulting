@@ -26,7 +26,7 @@ class Profile extends Component {
 
     render() {
         let user = this.props.user;
-        console.log('profile user is ', user)
+        // console.log('profile user is ', user)
         return (
             <div className="Profile_master">
                 <Topnav />

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class Personal extends Component {
     render() {
 
-
+console.log(this.props.user)
 
         return(
             <div className="personal_master">

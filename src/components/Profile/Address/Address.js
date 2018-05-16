@@ -1,39 +1,66 @@
 import React, { Component } from 'react';
 import './Address.css';
-import { getUser } from './../../../ducks/users';
+import { getUser, updateUser } from './../../../ducks/users';
 import { connect } from 'react-redux';
 
 class Address extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            selectedToEdit:'none'
+        this.state = {
+            selectedToEdit: 'none',
+            // editingCountry: false,
+            // editingStreet: false,
+            // editingStreet2 : false,
+            // editingCity : false,
+            // editingState : false,
+            // editingPostalCode : false,
         }
     }
-    selectedToEdit(value){
+    selectedToEdit(value) {
         console.log(value)
         this.setState({
-            selectedToEdit:value
+            selectedToEdit: value
         })
     }
-    render() {
+    saveChange(value) {
+        console.log(value)
+        let updatedUser = this.props.user
+        updatedUser.address_country = value
+        // console.log(updatedUser)
+        this.props.updateUser(updatedUser)
 
-        let user_country = this.state.selectedToEdit === "user_country" ? <select><option>USA</option></select> : this.props.user.address_country;
+        this.setState({
+            selectedToEdit: 'none'
+        })
+    }
+    
+    render() {
+        console.log(this.props.user)
+
+        let user_country = this.state.selectedToEdit === "user_country" ?
+            <select id="profile_country_select">
+                <option>Select</option>
+                <option>USA</option>
+            </select>
+            : this.props.user.address_country;
+
         let user_street = this.props.user.address_street;
         // let user_street_2 = this.props.user.address_street_2;
         let user_city = this.props.user.address_city;
         let user_state = this.props.user.address_state;
         let user_postal_code = this.props.user.address_postal_code;
-        
+
+        let countryButton = this.state.selectedToEdit === "user_country" ? <button value="user_country" className="address_edit" onClick={() => this.saveChange(document.getElementById("profile_country_select").value)}>Save</button> : <button value="user_country" className="address_edit" onClick={(e) => this.selectedToEdit(e.target.value)}>Edit</button>
+
 
         return (
             <div className="address_master">
                 <h1>Address stuff</h1>
                 <div className="user_country">
                     <h3>Country:</h3>
-                    
+
                     {user_country === null ? "None" : user_country}
-                    <button value="user_country" className="address_edit" onClick={(e)=>this.selectedToEdit(e.target.value)}>Edit</button>
+                    {countryButton}
                 </div>
                 <div className="user_street">
                     <h3>Street:</h3>
@@ -72,4 +99,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getUser })(Address)
+export default connect(mapStateToProps, { getUser , updateUser})(Address)

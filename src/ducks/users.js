@@ -11,6 +11,7 @@ const initialState = {
 const GET_USER = 'GET_USER';
 const GET_FREQUENCIES = 'GET_FREQUENCIES';
 const GET_USER_REMINDERS = 'GET_USER_REMINDERS';
+const UPDATE_USER = 'UPDATE_USER';
 
 
 export default function reducer(state = initialState, action) {
@@ -22,6 +23,8 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { frequencies: action.payload });
         case GET_USER_REMINDERS + '_FULFILLED':
             return Object.assign({}, state, { userReminders: action.payload });
+        case UPDATE_USER + '_FULFILLED':
+            return Object.assign({}, state, { userData: action.payload} )
 
 
         default:
@@ -58,5 +61,16 @@ export default function reducer(state = initialState, action) {
         return {
             type: GET_USER_REMINDERS,
             payload: userReminders
+        }
+    }
+    export function updateUser(updatedUser) {
+        let userData = axios.put(`/update_address`, updatedUser)
+            .then(res => {
+                return res.data;
+            })
+
+        return {
+            type: UPDATE_USER,
+            payload: userData
         }
     }

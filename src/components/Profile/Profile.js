@@ -14,7 +14,7 @@ class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            selectedSubnav:'profile_subnav_contact'
+            selectedSubnav:'profile_subnav_address'
         }
     }
 

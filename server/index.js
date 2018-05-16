@@ -108,6 +108,8 @@ app.post('/addReminderTemplate', controller.addReminderTemplate)
 app.post('/addReminderInstance', controller.addReminderInstance)
 
 
+app.put('/update_address', controller.updateAddress)
+
 
 
 

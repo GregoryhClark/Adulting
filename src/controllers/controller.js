@@ -42,6 +42,13 @@ module.exports = {
         db.update_user_country([address_country, id])
             .then((user) => { res.status(200).send(user) })
             .catch(() => res.status(500).send())
+    },
+    updateUserStreet: (req, res) => {
+        const db = req.app.get('db');
+        const { id, street } = req.body;
+        db.update_user_street([street, id])
+            .then((user) => { res.status(200).send(user) })
+            .catch(() => res.status(500).send())
     }
 
 }

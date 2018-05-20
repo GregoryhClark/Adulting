@@ -109,6 +109,7 @@ app.post('/addReminderInstance', controller.addReminderInstance)
 
 
 app.put('/update_address', controller.updateAddress)
+app.put('/update_street', controller.updateUserStreet)
 
 
 

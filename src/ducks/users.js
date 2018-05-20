@@ -11,7 +11,8 @@ const initialState = {
 const GET_USER = 'GET_USER';
 const GET_FREQUENCIES = 'GET_FREQUENCIES';
 const GET_USER_REMINDERS = 'GET_USER_REMINDERS';
-const UPDATE_USER = 'UPDATE_USER';
+const UPDATE_USER_COUNTRY = 'UPDATE_USER_COUNTRY';
+const UPDATE_USER_STREET = 'UPDATE_USER_STREET';
 
 
 export default function reducer(state = initialState, action) {
@@ -23,8 +24,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { frequencies: action.payload });
         case GET_USER_REMINDERS + '_FULFILLED':
             return Object.assign({}, state, { userReminders: action.payload });
-        case UPDATE_USER + '_FULFILLED':
-            return Object.assign({}, state, { userData: action.payload} )
+        case UPDATE_USER_COUNTRY + '_FULFILLED':
+            return Object.assign({}, state, { user: action.payload} );
+        case UPDATE_USER_STREET + '_FULFILLED':
+            return Object.assign({}, state, { updatedStreet: action.payload});
 
 
         default:
@@ -63,14 +66,25 @@ export default function reducer(state = initialState, action) {
             payload: userReminders
         }
     }
-    export function updateUser(updatedUser) {
+    export function updateUserCountry(updatedUser) {
         let userData = axios.put(`/update_address`, updatedUser)
             .then(res => {
                 return res.data;
             })
 
         return {
-            type: UPDATE_USER,
+            type: UPDATE_USER_COUNTRY,
             payload: userData
+        }
+    }
+    export function updateUserStreet(updatedStreet) {
+        console.log('Hit here', updatedStreet)
+        let userStreet = axios.put(`/update_street`, updatedStreet)
+        .then(res => {
+            return res.data;
+        })
+        return {
+            type: UPDATE_USER_STREET,
+            payload: userStreet
         }
     }

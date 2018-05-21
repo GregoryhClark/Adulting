@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); //require the .env file
 
 const express = require('express')
 , session =require('express-session')
@@ -103,12 +103,13 @@ app.get('/auth/logout', (req, res) => {
 
 app.get('/frequencies', controller.getFrequencies)
 app.get('/reminders/:id', controller.getUserReminders)
+app.get('/country/id', controller.getCountry)
 
 app.post('/addReminderTemplate', controller.addReminderTemplate)
 app.post('/addReminderInstance', controller.addReminderInstance)
 
 
-app.put('/update_address', controller.updateAddress)
+app.put('/update_country', controller.updateUserCountry)
 app.put('/update_street', controller.updateUserStreet)
 
 

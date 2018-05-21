@@ -67,7 +67,8 @@ export default function reducer(state = initialState, action) {
         }
     }
     export function updateUserCountry(updatedUser) {
-        let userData = axios.put(`/update_address`, updatedUser)
+        
+        let userData = axios.put(`/update_country`, updatedUser)
             .then(res => {
                 return res.data;
             })
@@ -78,7 +79,7 @@ export default function reducer(state = initialState, action) {
         }
     }
     export function updateUserStreet(updatedStreet) {
-        console.log('Hit here', updatedStreet)
+        
         let userStreet = axios.put(`/update_street`, updatedStreet)
         .then(res => {
             return res.data;

@@ -36,10 +36,12 @@ module.exports = {
             .then((instance) => { res.status(200).send(instance) })
             .catch(() => res.status(500).send())
     },
-    updateAddress: (req, res) => {
+    updateUserCountry: (req, res) => {
         const db = req.app.get('db');
-        const { id, address_country } = req.body;
-        db.update_user_country([address_country, id])
+        const { id, country } = req.body;
+        console.log(country)
+        console.log(id)
+        db.update_user_country([country, id])
             .then((user) => { res.status(200).send(user) })
             .catch(() => res.status(500).send())
     },
@@ -48,6 +50,12 @@ module.exports = {
         const { id, street } = req.body;
         db.update_user_street([street, id])
             .then((user) => { res.status(200).send(user) })
+            .catch(() => res.status(500).send())
+    },
+    getCountry: (req, res) => {
+        const db = req.app.get('db');
+        db.get_country([req.params.id])
+            .then((country) => { res.status(200).send(country) })
             .catch(() => res.status(500).send())
     }
 

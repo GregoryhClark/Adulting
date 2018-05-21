@@ -1,19 +1,15 @@
+//import resources here
 import React, { Component } from 'react';
 import './Address.css';
 import { getUser, updateUserCountry, updateUserStreet } from './../../../ducks/users';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Address extends Component {
     constructor() {
         super();
         this.state = {
             selectedToEdit: 'none',
-            // editingCountry: false,
-            // editingStreet: false,
-            // editingStreet2 : false,
-            // editingCity : false,
-            // editingState : false,
-            // editingPostalCode : false,
         }
     }
     selectedToEdit(value) {
@@ -23,13 +19,14 @@ class Address extends Component {
         })
     }
     saveCountryChange(value) {
-
+        console.log(this.props.user.id)
         let updatedUser = this.props.user
-        updatedUser.address_country = value
+        updatedUser.country = value
         this.props.updateUserCountry(updatedUser)
         this.setState({
             selectedToEdit: 'none'
         })
+        this.props.getUser()
     }
     saveStreetChange(street){
         let newStreet = {
@@ -41,6 +38,7 @@ class Address extends Component {
         this.setState({
             selectedToEdit: 'none'
         })
+        this.props.getUser()
 
     }
     
@@ -51,8 +49,9 @@ class Address extends Component {
             <select id="profile_country_select">
                 <option>Select</option>
                 <option>USA</option>
+                <option>Canada</option>
             </select>
-            : this.props.user.address_country;
+            : this.props.user.country;
 
         let user_street = this.state.selectedToEdit === "user_street" ? 
             <input id="profile_street_input"/>  : this.props.user.address_street;

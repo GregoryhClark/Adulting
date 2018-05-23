@@ -4,15 +4,18 @@ const initialState = {
     user: {},
     navbarSlide: false,
     frequencies: [],
-    userReminders: []
+    userReminders: [],
+    states:[]
 }
 
 //action Types go here:
 const GET_USER = 'GET_USER';
 const GET_FREQUENCIES = 'GET_FREQUENCIES';
 const GET_USER_REMINDERS = 'GET_USER_REMINDERS';
+const GET_STATES = 'GET_STATES';
 const UPDATE_USER_COUNTRY = 'UPDATE_USER_COUNTRY';
 const UPDATE_USER_STREET = 'UPDATE_USER_STREET';
+const UPDATE_USER_CITY = 'UPDATE_USER_CITY';
 
 
 export default function reducer(state = initialState, action) {
@@ -28,6 +31,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { user: action.payload} );
         case UPDATE_USER_STREET + '_FULFILLED':
             return Object.assign({}, state, { updatedStreet: action.payload});
+        case UPDATE_USER_CITY + '_FULFILLED':
+            return Object.assign({}, state, {updatedCity: action.payload});
+        case GET_STATES + '_FULFILLED' :
+            return Object.assign({}, state, {states: action.payload})
 
 
         default:
@@ -89,3 +96,27 @@ export default function reducer(state = initialState, action) {
             payload: userStreet
         }
     }
+    export function updateUserCity(updatedCity) {
+        
+        let userCity = axios.put(`/update_city`, updatedCity)
+        .then(res => {
+            return res.data;
+        })
+        return {
+            type: UPDATE_USER_CITY,
+            payload: userCity
+        }
+    }
+    export function getStates() {
+        let states = axios.get(`/states`)
+        .then(res => {
+            return res.data;
+        })
+        return {
+            type: GET_STATES,
+            payload: states
+        }
+    }
+
+    
+    

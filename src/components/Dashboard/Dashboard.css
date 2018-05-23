@@ -46,6 +46,7 @@
 }
 .main_h1{
     padding-top:30px;
+    text-align: center;
 }
 .btn_take_survey{
     margin-top:50px;
@@ -59,4 +60,5 @@
 }
 .right_column h3{
     margin-top:25px;
+    text-align: center;
 }

@@ -13,12 +13,23 @@ module.exports = {
         db.get_frequencies()
             .then((frequencies) => { res.status(200).send(frequencies) })
             .catch(() => res.status(500).send())
-
+    },
+    getAllStates: (req, res) => {
+        const db = req.app.get('db');
+        db.get_all_states()
+            .then((states) => { res.status(200).send(states) })
+            .catch(() => res.status(500).send())
     },
     getUserReminders: (req, res) => {
         const db = req.app.get('db');
         db.get_user_reminders([req.params.id])
             .then((reminders) => { res.status(200).send(reminders) })
+            .catch(() => res.status(500).send())
+    },
+    getCountry: (req, res) => {
+        const db = req.app.get('db');
+        db.get_country([req.params.id])
+            .then((country) => { res.status(200).send(country) })
             .catch(() => res.status(500).send())
     },
 
@@ -52,11 +63,20 @@ module.exports = {
             .then((user) => { res.status(200).send(user) })
             .catch(() => res.status(500).send())
     },
-    getCountry: (req, res) => {
+    updateUserCity: (req, res) => {
         const db = req.app.get('db');
-        db.get_country([req.params.id])
-            .then((country) => { res.status(200).send(country) })
+        const { id, city } = req.body;
+        db.update_user_city([city, id])
+            .then((user) => { res.status(200).send(user) })
             .catch(() => res.status(500).send())
-    }
+    },
+    updateUserState:(req, res) => {
+        const db = req.app.get('db');
+        const { id, state } = req.body;
+        db.update_user_state([state, id])
+            .then((state) => { res.status(200).send(state) })
+            .catch(() => res.status(500).send())
+    },
+    
 
 }

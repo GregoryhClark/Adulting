@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
 import Contact from './Contact/Contact';
 import Personal from './Personal/Personal';
-import Prof_Notifications from './Prof_Notifications/Prof_Notifications';
+import ProfNotifications from './Prof_Notifications/Prof_Notifications';
 import Address from './Address/Address';
 
 
@@ -47,7 +47,7 @@ class Profile extends Component {
 
                         <div className="selected_data_category">
                             {this.state.selectedSubnav === "profile_subnav_contact"? <Contact /> : null}
-                            {this.state.selectedSubnav === "profile_subnav_notifications"? <Prof_Notifications /> : null}
+                            {this.state.selectedSubnav === "profile_subnav_notifications"? <ProfNotifications /> : null}
                             {this.state.selectedSubnav === "profile_subnav_address"? <Address /> : null}
                             {this.state.selectedSubnav === "profile_subnav_personal"? <Personal /> : null}
                         </div>

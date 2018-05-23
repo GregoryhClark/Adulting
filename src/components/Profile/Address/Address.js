@@ -1,9 +1,10 @@
 //import resources here
 import React, { Component } from 'react';
 import './Address.css';
-import { getUser, updateUserCountry, updateUserStreet } from './../../../ducks/users';
+import { getUser, updateUserCountry, updateUserStreet, updateUserCity, getStates } from './../../../ducks/users';
 import { connect } from 'react-redux';
 import axios from 'axios';
+
 
 class Address extends Component {
     constructor() {
@@ -12,6 +13,7 @@ class Address extends Component {
             selectedToEdit: 'none',
         }
     }
+
     selectedToEdit(value) {
 
         this.setState({
@@ -41,9 +43,39 @@ class Address extends Component {
         this.props.getUser()
 
     }
+    saveCityChange(city){
+        let newCity = {
+            id:this.props.user.id,
+            city
+        }
+        this.props.updateUserCity(newCity)
+
+        this.setState({
+            selectedToEdit: 'none'
+        })
+        this.props.getUser()
+
+    }
+    saveStateChange(state){
+        console.log(state)
+        let stateObj = {
+            id: this.props.user.id,
+            state
+        }
+        axios.put('/update_state', stateObj).then(()=>{
+            this.props.getUser();
+        })
+        this.setState({
+            selectedToEdit: 'none'
+        })
+
+    }
     
     render() {
-        console.log(this.props.user)
+             
+        let stateOptions = this.props.states.map((state, index)=>{
+            return <option key={index} value={state.id}>{state.state_abr}</option>
+        })
 
         let user_country = this.state.selectedToEdit === "user_country" ?
             <select id="profile_country_select">
@@ -55,15 +87,32 @@ class Address extends Component {
 
         let user_street = this.state.selectedToEdit === "user_street" ? 
             <input id="profile_street_input"/>  : this.props.user.address_street;
-        // let user_street_2 = this.props.user.address_street_2;
-        let user_city = this.props.user.address_city;
-        let user_state = this.props.user.address_state;
+
+        let user_city = this.state.selectedToEdit === "user_city" ?  
+            <input id="profile_city_input"/>: this.props.user.address_city;
+
+        let user_state = this.state.selectedToEdit === "user_state" ? 
+         <select id="profile_state_select"> {stateOptions} </select>: this.props.user.address_state;
+
+
         let user_postal_code = this.props.user.address_postal_code;
 
-        let countryButton = this.state.selectedToEdit === "user_country" ? <button value="user_country" className="address_edit" onClick={() => this.saveCountryChange(document.getElementById("profile_country_select").value)}>Save</button> : <button value="user_country" className="address_edit" onClick={(e) => this.selectedToEdit(e.target.value)}>Edit</button>
+        let countryButton = this.state.selectedToEdit === "user_country" ? 
+            <button value="user_country" className="address_edit" onClick={() => this.saveCountryChange(document.getElementById("profile_country_select").value)}>Save</button> : 
+            <button value="user_country" className="address_edit" onClick={(e) => this.selectedToEdit(e.target.value)}>Edit</button>
 
-        let streetButton = this.state.selectedToEdit === "user_street" ? <button value="user_street" className="address_edit" onClick={()=> this.saveStreetChange(document.getElementById('profile_street_input').value) }>Save</button> : <button value="user_street" className="street_edit" onClick={(e) => this.selectedToEdit(e.target.value)}> Edit </button>
+        let streetButton = this.state.selectedToEdit === "user_street" ? 
+            <button value="user_street" className="address_edit" onClick={()=> this.saveStreetChange(document.getElementById('profile_street_input').value) }>Save</button> : 
+            <button value="user_street" className="address_edit" onClick={(e) => this.selectedToEdit(e.target.value)}> Edit </button>
 
+        let cityButton = this.state.selectedToEdit === "user_city" ? 
+            <button value="user_city" className="address_edit" onClick={()=> this.saveCityChange(document.getElementById('profile_city_input').value) }>Save</button> : 
+            <button value="user_city" className="address_edit"  onClick={(e) => this.selectedToEdit(e.target.value)}>Edit</button>
+        
+        let stateButton = this.state.selectedToEdit === "user_state" ? 
+            <button value="user_state" className="address_edit" onClick={()=> this.saveStateChange(document.getElementById('profile_state_select').value)}>Save</button> : 
+            <button value = "user_state" className ="address_edit" onClick={(e) => this.selectedToEdit(e.target.value)}>Edit</button>
+        
         return (
             <div className="address_master">
                 <h1>Address stuff</h1>
@@ -87,12 +136,12 @@ class Address extends Component {
                 <div className="user_city">
                     <h3>City:</h3>
                     {user_city === null ? "None" : user_city}
-                    <button className="address_edit">Edit</button>
+                    {cityButton}
                 </div>
                 <div className="user_state">
                     <h3>State:</h3>
                     {user_state === null ? "None" : user_state}
-                    <button className="address_edit">Edit</button>
+                    {stateButton}
                 </div>
                 <div className="user_postal_code">
                     <h3>Zip:</h3>
@@ -105,10 +154,11 @@ class Address extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { user } = state
+    const { user, states } = state
     return {
-        user
+        user,
+        states
     }
 }
 
-export default connect(mapStateToProps, { getUser , updateUserCountry, updateUserStreet})(Address)
+export default connect(mapStateToProps, { getUser , updateUserCountry, updateUserStreet, updateUserCity, getStates})(Address)

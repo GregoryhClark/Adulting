@@ -104,6 +104,7 @@ app.get('/auth/logout', (req, res) => {
 app.get('/frequencies', controller.getFrequencies)
 app.get('/reminders/:id', controller.getUserReminders)
 app.get('/country/id', controller.getCountry)
+app.get('/states', controller.getAllStates)
 
 app.post('/addReminderTemplate', controller.addReminderTemplate)
 app.post('/addReminderInstance', controller.addReminderInstance)
@@ -111,6 +112,8 @@ app.post('/addReminderInstance', controller.addReminderInstance)
 
 app.put('/update_country', controller.updateUserCountry)
 app.put('/update_street', controller.updateUserStreet)
+app.put('/update_city', controller.updateUserCity)
+app.put('/update_state', controller.updateUserState)
 
 
 

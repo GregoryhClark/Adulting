@@ -8,9 +8,163 @@ class Prof_Notifications extends Component {
 
 
 
-        return(
+        return (
             <div className="prof_Notifications_master">
-                <h1>Prof_Notifications stuff</h1>
+
+
+                <table>
+                    <th><h3>Email</h3></th>
+                    <tr>
+                        <td><p>Daily</p></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>Weekly</p></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Monthly</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Yearly</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Other</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <th><h3>SMS Text</h3></th>
+                    <tr>
+                        <td><p>Daily</p></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>Weekly</p></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Monthly</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Yearly</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Other</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <th><h3>In-App</h3></th>
+                    <tr>
+                        <td><p>Daily</p></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>Weekly</p></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Monthly</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Yearly</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><p>Other</p></td>
+                        <td>
+                        <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+
+                    </tr>
+                    
+                </table>
             </div>
         )
     }

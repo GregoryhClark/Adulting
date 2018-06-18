@@ -5,166 +5,51 @@ import { connect } from 'react-redux';
 
 class Prof_Notifications extends Component {
     render() {
+ function toggleEmail(e){
+    e.target.checked === true? console.log(e.target.checked, "it's true") : console.log(e.target.checked, "it's false");
+    //  console.log(e.target.checked);
 
+
+//    if (e.checked === true){
+//        e.checked = false
+//        console.log('checked')
+//    }else 
+//    e.checked = true;
+//     console.log(e.target)
+
+
+    //  alert('change made');
+
+ }
 
 
         return (
             <div className="prof_Notifications_master">
 
+            
 
-                <table>
-                    <th><h3>Email</h3></th>
-                    <tr>
-                        <td><p>Daily</p></td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><p>Weekly</p></td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
+                <h3>Email</h3>
+                <label class="switch">
+                    <input type="checkbox" id="email_check" onChange={(e) => toggleEmail(e)}/>
+                    <span class="slider round"></span>
+                </label>
 
-                    </tr>
-                    <tr>
-                        <td><p>Monthly</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
+                <h3>SMS Text</h3>
+                <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider round"></span>
+                </label>
 
-                    </tr>
-                    <tr>
-                        <td><p>Yearly</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
+                <h3>In-App</h3>
+                <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider round"></span>
+                </label>
 
-                    </tr>
-                    <tr>
-                        <td><p>Other</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
 
-                    </tr>
-                    <th><h3>SMS Text</h3></th>
-                    <tr>
-                        <td><p>Daily</p></td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><p>Weekly</p></td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
 
-                    </tr>
-                    <tr>
-                        <td><p>Monthly</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
 
-                    </tr>
-                    <tr>
-                        <td><p>Yearly</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
 
-                    </tr>
-                    <tr>
-                        <td><p>Other</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-
-                    </tr>
-                    <th><h3>In-App</h3></th>
-                    <tr>
-                        <td><p>Daily</p></td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><p>Weekly</p></td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td><p>Monthly</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td><p>Yearly</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td><p>Other</p></td>
-                        <td>
-                        <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-
-                    </tr>
-                    
-                </table>
             </div>
         )
     }

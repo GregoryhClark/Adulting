@@ -10,6 +10,8 @@ const express = require('express')
 , exphbs = require('express-handlebars')
 , nodemailer = require('nodemailer')
 , cors = require('cors')
+, cron = require('node-cron')
+, fs = require('fs');
 
 
 const {
@@ -114,6 +116,12 @@ app.put('/update_country', controller.updateUserCountry)
 app.put('/update_street', controller.updateUserStreet)
 app.put('/update_city', controller.updateUserCity)
 app.put('/update_state', controller.updateUserState)
+
+
+//Cron jobs
+cron.schedule("* * * * *", function() {
+    console.log("running a task every minute");
+  });
 
 
 

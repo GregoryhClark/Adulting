@@ -29,17 +29,17 @@
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: #fff;
     -webkit-transition: .4s;
     transition: .4s;
   }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #0E254B;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #0E254B;
   }
   
   input:checked + .slider:before {

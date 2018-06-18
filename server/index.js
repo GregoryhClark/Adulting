@@ -116,11 +116,12 @@ app.put('/update_country', controller.updateUserCountry)
 app.put('/update_street', controller.updateUserStreet)
 app.put('/update_city', controller.updateUserCity)
 app.put('/update_state', controller.updateUserState)
+app.put('/email_notifications_settings', controller.updateEmailPreferences)
 
 
 //Cron jobs
 cron.schedule("* * * * *", function() {
-    console.log("running a task every minute");
+    // console.log("running a task every minute");
   });
 
 

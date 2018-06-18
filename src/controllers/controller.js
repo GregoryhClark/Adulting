@@ -77,6 +77,14 @@ module.exports = {
             .then((state) => { res.status(200).send(state) })
             .catch(() => res.status(500).send())
     },
+    updateEmailPreferences:(req, res) => {
+        const db = req.app.get('db');
+        const { user_id, notify_email } = req.body;
+        console.log('hit here');
+        db.update_email_prefs([notify_email, user_id])
+            .then((state) => { res.status(200).send(state) })
+            .catch(() => res.status(500).send())
+    },
     
 
 }

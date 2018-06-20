@@ -5,35 +5,42 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Prof_Notifications extends Component {
-
-    componentDidMount() {
-
-        this.props.getUser().then((res)=>console.log(res.value.id))   
+    constructor(props) {
+        super(props);
+        // this.toggleEmail = this.toggleEmail.bind(this);
     }
+
+    // componentDidMount() {
+
+    //     this.props.getUser().then((res) => console.log(res.value.id))
+    // }
     render() {
- function toggleEmail(e){
-    e.target.checked === true? console.log(e.target.checked, "it's true") : console.log(e.target.checked, "it's false");
+        const userID = this.props.userID;
+        function toggleEmail(e) {
+            e.target.checked === true ? console.log(e.target.checked, "it's true") : console.log(e.target.checked, "it's false");
 
-    let toggleObj = {
-        // user_id:this.props.user.id,
-        notify_email:e.target.checked,
-        user_id:8
+            // let user = this.props.getUser();
+            let toggleObj = {
 
-    }
+                user_id: userID,
+                notify_email: e.target.checked,
 
-    axios.put('/email_notifications_settings', toggleObj).then(()=>{
-        // this.props.getUser();
-    })
+            }
 
+            axios.put('/email_notifications_settings', toggleObj).then(() => {
 
 
- }
+            })
+
+
+
+        }
 
 
         return (
             <div className="prof_Notifications_master">
 
-            
+
 
                 <h3>Email</h3>
                 <label class="switch">
@@ -52,6 +59,12 @@ class Prof_Notifications extends Component {
                     <input type="checkbox" />
                     <span class="slider round"></span>
                 </label>
+
+                <div>
+                    <h1>
+                        {userID}
+                    </h1>
+                </div>
 
 
 

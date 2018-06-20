@@ -14,19 +14,19 @@ class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            selectedSubnav:'profile_subnav_notifications'///////////////////
+            selectedSubnav: 'profile_subnav_notifications'///////////////////
         }
     }
 
     selectSubnavTab(tab) {
         this.setState({
-            selectedSubnav:tab.id
+            selectedSubnav: tab.id
         })
     }
 
     render() {
         let user = this.props.user;
-        // console.log('profile user is ', user)
+        console.log('profile user is ', user)
         return (
             <div className="Profile_master">
                 <Topnav />
@@ -46,11 +46,16 @@ class Profile extends Component {
                         </div>
 
                         <div className="selected_data_category">
-                            {this.state.selectedSubnav === "profile_subnav_contact"? <Contact /> : null}
-                            {this.state.selectedSubnav === "profile_subnav_notifications"? <ProfNotifications /> : null}
-                            {this.state.selectedSubnav === "profile_subnav_address"? <Address /> : null}
-                            {this.state.selectedSubnav === "profile_subnav_personal"? <Personal /> : null}
+                            {this.state.selectedSubnav === "profile_subnav_contact" ? <Contact /> : null}
+                            {this.state.selectedSubnav === "profile_subnav_notifications" ? <ProfNotifications userID = {this.props.user.id}/> : null}
+                            {this.state.selectedSubnav === "profile_subnav_address" ? <Address /> : null}
+                            {this.state.selectedSubnav === "profile_subnav_personal" ? <Personal /> : null}
                         </div>
+                    </div>
+                    <div>
+                        <h1>
+                            {/* {user} */}
+                        </h1>
                     </div>
 
                 </div>

@@ -17,23 +17,32 @@ class Prof_Notifications extends Component {
     render() {
         const userID = this.props.userID;
         function toggleEmail(e) {
-            e.target.checked === true ? console.log(e.target.checked, "it's true") : console.log(e.target.checked, "it's false");
-
-            // let user = this.props.getUser();
+            // e.target.checked === true ? console.log(e.target.checked, "it's true") : console.log(e.target.checked, "it's false");
             let toggleObj = {
-
                 user_id: userID,
                 notify_email: e.target.checked,
-
             }
-
             axios.put('/email_notifications_settings', toggleObj).then(() => {
-
-
+                //should I have something here?
             })
-
-
-
+        }
+        function toggleText(e) {
+            let toggleObj = {
+                user_id: userID,
+                notify_text: e.target.checked,
+            }
+            axios.put('/text_notifications_settings', toggleObj).then(() => {
+                //should I have something here?
+            })
+        }
+        function toggleInApp(e) {
+            let toggleObj = {
+                user_id: userID,
+                notify_inApp: e.target.checked,
+            }
+            axios.put('/in_app_notifications_settings', toggleObj).then(() => {
+                //should I have something here?
+            })
         }
 
 
@@ -50,21 +59,16 @@ class Prof_Notifications extends Component {
 
                 <h3>SMS Text</h3>
                 <label class="switch">
-                    <input type="checkbox" />
+                    <input type="checkbox" id="text_check" onChange={(e) => toggleText(e)} />
                     <span class="slider round"></span>
                 </label>
 
                 <h3>In-App</h3>
                 <label class="switch">
-                    <input type="checkbox" />
+                    <input type="checkbox" id="inApp_check" onChange={(e) => toggleInApp(e)} />
                     <span class="slider round"></span>
                 </label>
 
-                <div>
-                    <h1>
-                        {userID}
-                    </h1>
-                </div>
 
 
 

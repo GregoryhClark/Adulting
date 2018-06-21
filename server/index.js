@@ -6,6 +6,7 @@ const express = require('express')
 , Auth0Strategy = require('passport-auth0')
 , massive = require('massive')
 , controller = require('../src/controllers/controller.js')
+, cronHandler = require('../src/components/CronHandler/CronHandler.js')
 , bodyParser = require('body-parser')//Dont forget this next time you fool!!!!
 , exphbs = require('express-handlebars')
 , nodemailer = require('nodemailer')
@@ -117,11 +118,16 @@ app.put('/update_street', controller.updateUserStreet)
 app.put('/update_city', controller.updateUserCity)
 app.put('/update_state', controller.updateUserState)
 app.put('/email_notifications_settings', controller.updateEmailPreferences)
+app.put('/text_notifications_settings', controller.updateTextPreference)
+app.put('/in_app_notifications_settings', controller.updateInAppPrefs)
 
 
 //Cron jobs
 cron.schedule("* * * * *", function() {
-    // console.log("running a task every minute");
+    cronHandler.checkTheReminder(app)
+    //send email to that user with the reminder details.
+    //send text with the reminder details
+    //add notification to new notifications array.
   });
 
 

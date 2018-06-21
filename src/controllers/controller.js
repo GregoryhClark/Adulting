@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer')//WTF?!?!?!
 const {
     EMAIL_PASS,
     EMAIL_USER
@@ -80,8 +80,21 @@ module.exports = {
     updateEmailPreferences:(req, res) => {
         const db = req.app.get('db');
         const { user_id, notify_email } = req.body;
-        console.log('hit here');
         db.update_email_prefs([notify_email, user_id])
+            .then((state) => { res.status(200).send(state) })
+            .catch(() => res.status(500).send())
+    },
+    updateTextPreference:(req, res) => {
+        const db = req.app.get('db');
+        const { user_id, notify_text } = req.body;
+        db.update_text_prefs([notify_text, user_id])
+            .then((state) => { res.status(200).send(state) })
+            .catch(() => res.status(500).send())
+    },
+    updateInAppPrefs:(req, res) => {
+        const db = req.app.get('db');
+        const { user_id, notify_inApp } = req.body;
+        db.update_in_app_prefs([notify_inApp, user_id])
             .then((state) => { res.status(200).send(state) })
             .catch(() => res.status(500).send())
     },

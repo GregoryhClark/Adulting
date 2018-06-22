@@ -1,10 +1,5 @@
 require('dotenv').config();
 
-const nodemailer = require('nodemailer')//WTF?!?!?!
-const {
-    EMAIL_PASS,
-    EMAIL_USER
-} = process.env;
 
 module.exports = {
 

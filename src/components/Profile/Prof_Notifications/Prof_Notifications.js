@@ -53,7 +53,7 @@ class Prof_Notifications extends Component {
 
                 <h3>Email</h3>
                 <label class="switch">
-                    <input type="checkbox" id="email_check" onChange={(e) => toggleEmail(e)} />
+                    <input type="checkbox" id="email_check"  onChange={(e) => toggleEmail(e)} />
                     <span class="slider round"></span>
                 </label>
 

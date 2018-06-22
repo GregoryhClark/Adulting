@@ -14,7 +14,6 @@ const express = require('express')
 , cron = require('node-cron')
 , fs = require('fs');
 
-
 const {
     SERVER_PORT,
     SESSION_SECRET,
@@ -70,8 +69,6 @@ passport.use( new Auth0Strategy({
         }
     })
 
-
-
 }));
 
 passport.serializeUser((id, done)=> {
@@ -90,7 +87,6 @@ app.get('/auth/callback', passport.authenticate('auth0', {
     successRedirect: REACT_APP_LOGIN_SUCCESS,
     failureRedirect: REACT_APP_LOGIN_FAIL
 } ))
-
 app.get('/auth/me', (req,res) => {
     if (req.user){
         res.status(200).send(req.user);
@@ -98,12 +94,10 @@ app.get('/auth/me', (req,res) => {
         res.status(401).send("Nice try suckaaaa!!!!")
     }
 })
-
 app.get('/auth/logout', (req, res) => {
     req.logOut();
     res.redirect(LOGOUT)
 })
-
 app.get('/frequencies', controller.getFrequencies)
 app.get('/reminders/:id', controller.getUserReminders)
 app.get('/country/id', controller.getCountry)
@@ -111,7 +105,6 @@ app.get('/states', controller.getAllStates)
 
 app.post('/addReminderTemplate', controller.addReminderTemplate)
 app.post('/addReminderInstance', controller.addReminderInstance)
-
 
 app.put('/update_country', controller.updateUserCountry)
 app.put('/update_street', controller.updateUserStreet)
@@ -123,14 +116,10 @@ app.put('/in_app_notifications_settings', controller.updateInAppPrefs)
 
 
 //Cron jobs
+//This is run every minute
 cron.schedule("* * * * *", function() {
-    cronHandler.checkTheReminder(app)
-    //send email to that user with the reminder details.
-    //send text with the reminder details
-    //add notification to new notifications array.
+    // cronHandler.checkTheReminder(app)
   });
-
-
 
 
 

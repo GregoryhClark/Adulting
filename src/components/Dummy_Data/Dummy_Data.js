@@ -57,9 +57,9 @@ class Dummy_Data extends Component {
         console.log(this.state.reminderTemplateTitle)
 
     }
-    runSQLTest(){
+    // runSQLTest(){
 
-    }
+    // }
 
     render() {
         const user = this.props.user;
@@ -111,7 +111,7 @@ class Dummy_Data extends Component {
                 <button className="create_reminder"
                 onClick={()=>{this.createReminderInstance(document.getElementById('template_id').value, document.getElementById('start_date').value, document.getElementById('start_hour').value, document.getElementById('start_min').value, document.getElementById('end_date').value, document.getElementById('end_hour').value, document.getElementById('end_min').value)}}                >Create Reminder</button> */}
 
-                <button onClick={()=>this.runSQLTest()}>run test</button>
+                {/* <button onClick={()=>this.runSQLTest()}>run test</button> */}
 
             </div>
         )

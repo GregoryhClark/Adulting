@@ -119,6 +119,7 @@ app.put('/in_app_notifications_settings', controller.updateInAppPrefs)
 //This is run every minute
 cron.schedule("* * * * *", function() {
     // cronHandler.checkTheReminder(app)
+    console.log('Still running')
   });
 
 

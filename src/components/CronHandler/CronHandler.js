@@ -9,33 +9,21 @@ const {
 
 class CronHandler {
 
-    static checkReminder() {
-        console.log('Hello world')
-    }
+    // static checkReminder() {
+    //     console.log('Hello world')
+    // }
     static checkTheReminder(app) {
         //console.log("running a task every minute");
-        //assign variable to current date
-        let currentDate = new Date();
-        // console.log(currentDate)
-        //assign variable to current hour
-        let currentHour = currentDate.getHours();
-        // console.log('hours', currentHour)
-        //assign variable to current min
-        let currentMinute = currentDate.getMinutes();
-        // console.log('minute', currentMinute);
-        let testDate = new Date('May 18, 2018 03:24:00');
-        let testHour = 3;
-        let testMin = 30;
 
         const db = app.get('db');
         // db.check_reminders([currentDate, currentHour, currentMinute]).then((reminders) => { 
-        db.check_reminders([testDate, testHour, testMin]).then((reminders) => {
-           
-            console.log('here they are', reminders) 
-            reminders.map((reminder)=>{
-                //For optimization, these conditions should be applied to the SQL query, not here
+        db.check_reminders().then((reminders) => {
+
+            console.log('here they are', reminders) /////
+            reminders.map((reminder) => {
+
                 //send email to that user with the reminder details.
-                if(reminder.email_notify === true && reminder.reminder_is_deleted === false && reminder.user_is_deleted === false){
+                if (reminder.email_notify === true) {
                     console.log('email will be sent')
                     let transporter = nodemailer.createTransport({
                         host: 'smtp.gmail.com',
@@ -47,7 +35,7 @@ class CronHandler {
                         }
                     });
 
-                    let urlToLogin = 'http://localhost:3000/#/'
+                    let urlToLogin = 'http://localhost:3000/#/'//???
                     // setup email data with unicode symbols
                     let mailOptions = {
                         from: `"Adulting App" <${EMAIL_USER}>`, // sender address
@@ -67,29 +55,90 @@ class CronHandler {
 
                         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-
                     });
 
                 }
-                //For optimization, these conditions should be applied to the SQL query, not here
-                  //send text with the reminder details
-                if(reminder.text_notify === true && reminder.reminder_is_deleted === false && reminder.user_is_deleted === false){
+
+                //send text with the reminder details
+                if (reminder.text_notify === true) {
                     console.log('text will be sent')
                 }
-                //For optimization, these conditions should be applied to the SQL query, not here
-                if(reminder.in_app_notify === true && reminder.reminder_is_deleted === false && reminder.user_is_deleted === false){
+                //send in-app notification
+                if (reminder.in_app_notify === true) {
+                    //add notification to new notifications array.
                     console.log('in-app notification will be sent')
                 }
-            })
 
-           
+                //create new instance, set old instance to alerted=true
+
+
+                //Daily
+                if (reminder.frequency === 1) {
+
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 day', reminder.id]).then((clonedReminder) => {
+
+
+                    })
+
+                }
+                //Weekly
+                else if (reminder.frequency === 2) {
+
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '7 days', reminder.id]).then((clonedReminder) => {
+
+
+                    })
+
+                }
+                //Bi-weekly
+                else if (reminder.frequency === 3) {
+
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '14 days', reminder.id]).then((clonedReminder) => {
+
+
+                    })
+
+                }
+                //Monthly
+                else if (reminder.frequency === 4) {
+
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 month', reminder.id]).then((clonedReminder) => {
+
+
+                    })
+
+                }
+                //Yearly
+                else {
+
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 year', reminder.id]).then((clonedReminder) => {
+
+
+                    })
+
+                }
+                //Custom!!!!!!!!!!!!!!
+
+                //One-time!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+            })//close map over array of reminders
+
+
             //Execute Order 66...
 
         })
 
-            
-  
-    //add notification to new notifications array.
+
+
+
 
     }
 

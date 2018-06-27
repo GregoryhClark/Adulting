@@ -20,7 +20,9 @@
     top:48px;
     height: 100%;
     width: 100%;
-    background-color:lightskyblue;
+    /* temporary color */
+    background-color:gray;
+    
 }
 .dash_table_wrapper{
     position: relative;

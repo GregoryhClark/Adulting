@@ -13,16 +13,7 @@ class Dummy_Data extends Component {
         }
     }
     
-    // componentDidMount() {
 
-        // this.props.getUser()
-        //     .then((res) => {
-        //         this.props.getUserReminders(res.value.id)
-        //     })
-        // this.props.getFrequencies()
-       
-
-    // }
     createReminderTemplate(frequency, title){
         let templateObj = {
             user: this.props.user.id,
@@ -66,6 +57,9 @@ class Dummy_Data extends Component {
         console.log(this.state.reminderTemplateTitle)
 
     }
+    runSQLTest(){
+
+    }
 
     render() {
         const user = this.props.user;
@@ -81,8 +75,8 @@ class Dummy_Data extends Component {
         return (
             <div className="Dummy_Data_master">
                 <Topnav />
-                <div className="dash_pic">
-                    {user ? <img src={user.profile_img} alt='user profile' /> : null}
+                {/* <div className="dash_pic"> */}
+                    {/* {user ? <img src={user.profile_img} alt='user profile' /> : null}
                 </div>
                 <div>{user.first_name} {user.last_name}</div>
 
@@ -115,7 +109,10 @@ class Dummy_Data extends Component {
                 End min:
                 <input id="end_min" type="number"/>
                 <button className="create_reminder"
-                onClick={()=>{this.createReminderInstance(document.getElementById('template_id').value, document.getElementById('start_date').value, document.getElementById('start_hour').value, document.getElementById('start_min').value, document.getElementById('end_date').value, document.getElementById('end_hour').value, document.getElementById('end_min').value)}}                >Create Reminder</button>
+                onClick={()=>{this.createReminderInstance(document.getElementById('template_id').value, document.getElementById('start_date').value, document.getElementById('start_hour').value, document.getElementById('start_min').value, document.getElementById('end_date').value, document.getElementById('end_hour').value, document.getElementById('end_min').value)}}                >Create Reminder</button> */}
+
+                <button onClick={()=>this.runSQLTest()}>run test</button>
+
             </div>
         )
     }

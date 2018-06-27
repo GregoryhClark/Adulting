@@ -28,11 +28,11 @@ class Topnav extends Component {
             <div className="topnav_master">
                 <div className="topnav" id="myTopnav">
                         <a href="/#/dashboard" className="active">Dashboard</a>
-                        <a href="/#/reminders" >Reminders</a>
+                        {/* <a href="/#/reminders" >Reminders</a> */}
                         <a href="/#/profile" >Profile</a>
-                        <a href="/#/surveys" >Surveys</a>
+                        {/* <a href="/#/surveys" >Surveys</a> */}
                         <a href="/#/dummy" >Dummy Data</a>
-                        <a href="/#/dashboard" >Notifications</a>
+                        {/* <a href="/#/dashboard" >Notifications</a> */}
                         <a href={REACT_APP_LOGOUT}>Logout</a>
                         <a href="javascript:void(0);" className="icon" onClick={this.changeHamburger}>&#9776;</a>
                     </div>

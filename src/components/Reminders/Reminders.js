@@ -4,6 +4,10 @@ import { getUser, getFrequencies, getUserReminders } from './../../ducks/users';
 import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
 import axios from 'axios';
+import Incomplete from './Incomplete/Incomplete';
+import NewReminder from './NewReminder/NewReminder';
+import Templates from './Templates/Templates';
+
 
 
 
@@ -11,22 +15,9 @@ class Reminders extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            reminderFrequency:0,
-            reminderTitle:'',
-            reminderStartDate:  new Date(),
-            // reminderEndDate: new Date(),
-            alertBeforeIncrement:"minutes",
-            increment_num:0
 
-
+            selectedSubnav: 'reminders_subnav_new_reminders'
         }
-        this.setSelectFrequency = this.setSelectFrequency.bind(this);
-        this.setRemTemplateTitle = this.setRemTemplateTitle.bind(this);
-        this.setStartDate = this.setStartDate.bind(this);
-        // this.setEndDate = this.setEndDate.bind(this);
-        this.setAlertIncrement = this.setAlertIncrement.bind(this);
-        this.createNewReminder = this.createNewReminder.bind(this);
-       
     }
 
     componentDidMount() {
@@ -37,65 +28,31 @@ class Reminders extends Component {
             })
 
     }
-    setSelectFrequency(freq){
-        this.setState({
-            reminderFrequency:freq
-        })
-        // console.log(this.state.reminderTemplateFrequency)
-    }
-    setRemTemplateTitle(title){
-        
-        this.setState({
-            reminderTitle:title
-        })
-        // console.log(this.state.reminderTemplateTitle)
-    }
-    //set start date
-    setStartDate(date){
-        this.setState({
-            reminderStartDate: new Date(date)
-        })
-    }
-    //complete by date
-    // setEndDate(date){
-    //     this.setState({
-    //         reminderEndDate: date
-    //     });
-    // }
+
     
-    setAlertIncrement(increment){
+    selectSubnavTab(tab) {
         this.setState({
-            alertBeforeIncrement:increment
-        });
-    }
-    setNumIncrement(increment_num){
-        this.setState({
-            increment_num:increment_num
+            selectedSubnav: tab.id
         })
     }
     
-    createNewReminder(event){
-        console.log(this.state)
-
-        let reminderObj = {
-            user_id : this.props.user.id,
-            first_instance_date : this.state.reminderStartDate,
-            frequency : this.state.reminderFrequency,
-            title : this.state.reminderTitle,
-            // end_date : this.state.reminderEndDate,
-            alert_increment : this.state.alertBeforeIncrement,
-            increment_num : this.state.increment_num
-        }
-        console.log(reminderObj)
-        axios.post(`/create_reminder`, reminderObj).then((res)=>{
-            console.log(res)
-        })
-        event.preventDefault();
-    }
-
+    
+   
 
     render() {
         const user = this.props.user;
+        let userRemindersList = this.props.userReminders.map((reminder, index) => {
+
+            return (
+                <tr key ={index}>
+                    <td>{reminder.title}</td>
+                    <td>{reminder.first_instance_date.substring(0, 10)}</td>
+                    <td>{reminder.frequency}</td>
+                    <td>{reminder.completed? 'true': 'false'}</td>
+                    <td><button>Delete</button></td>
+                </tr>
+            )
+        });
 
         let currentFrequencies = this.props.frequencies.length > 0 ? this.props.frequencies.map((frequency, index) => {
             return (
@@ -103,11 +60,7 @@ class Reminders extends Component {
             )
         }) : <option>none</option>;
 
-        let alertIncrements= <select onChange={(e)=>this.setAlertIncrement(e.target.value)}>
-            <option value="minutes">Minutes</option>
-            <option value="hours">Hours</option>
-            <option value="days">Days</option>
-        </select>
+
         
         return (
             <div className="Reminders_master">
@@ -118,30 +71,26 @@ class Reminders extends Component {
                 </div>
                 <div>{user.first_name} {user.last_name}</div>
 
-                <form onSubmit={this.createNewReminder} className="new_reminder">
-                    New Reminder:
-                    <br />
-                    Frequency:
-                    <select name="" id="reminder_template_select" onChange={(e) => this.setSelectFrequency(e.target.value)}>
-                        <option >Select</option>
-                        {currentFrequencies}
-                    </select>
-                    <br />
-                    Title:
-                    <input id="reminder_template_title_input" required onChange={(e) => this.setRemTemplateTitle(e.target.value)} />
+                <div className="reminders_subnav_wrapper">
+                        <div className="reminders_subnav">
+                            <a href="http://localhost:3000/#/reminders" id="reminders_subnav_templates" onClick={(e) => { this.selectSubnavTab(e.target) }}>Templates</a>
+                            <a href="http://localhost:3000/#/reminders" id="reminders_subnav_new_reminders" onClick={(e) => { this.selectSubnavTab(e.target) }}>New Reminder</a>
+                            <a href="http://localhost:3000/#/reminders" id="reminders_subnav_incomplete" onClick={(e) => { this.selectSubnavTab(e.target) }}>Incomplete</a>
+                            
+                        </div>
 
-                    <br />
-                    Start date/time:
-                    <input type="datetime-local" id="start_date"  max="9999-12-31T23:59" required onChange={(e) => this.setStartDate(e.target.value)}/>
-                    <br />
+                        <div className="selected_data_category">
+                            {this.state.selectedSubnav === "reminders_subnav_templates" ? <Templates /> : null}
+                            {this.state.selectedSubnav === "reminders_subnav_new_reminders" ? <NewReminder userID={this.props.user.id} currentFrequencies={currentFrequencies} /> : null}
+                            {this.state.selectedSubnav === "reminders_subnav_incomplete" ? <Incomplete userRemindersList={userRemindersList}/> : null}
+                            
+                        </div>
+                    </div>
 
-                    Notify me <input type="number" min="1" max = "60" onChange={(e)=>{this.setNumIncrement(e.target.value)}}/> {alertIncrements} before.
-                    <br/>
-
-                    <input type="submit" value="Submit" />
-                        
-                </form>
+                
                 <div className="spacer"></div>
+
+                
 
             </div>
         )

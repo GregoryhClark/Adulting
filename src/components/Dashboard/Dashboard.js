@@ -17,11 +17,14 @@ class Dashboard extends Component {
         this.props.getStates()
 
     }
+    goToSurvey(){
+        alert("Hah! Yeah... this feature isn't ready yet... sorry")
+    }
 
     render() {
         const user = this.props.user;
         let remindersToDisplay = this.props.userReminders.map((reminder, index) => {
-
+            if(index < 5){
             return (
                 <tr key ={index}>
                     <td>{reminder.title}</td>
@@ -29,6 +32,7 @@ class Dashboard extends Component {
                     <td>{reminder.frequency}</td>
                 </tr>
             )
+        }
         });
         return (
             <div className="dashboard_master">
@@ -39,7 +43,7 @@ class Dashboard extends Component {
                 <div className="user_name_div">
                     {user.first_name} {user.last_name}
 
-                    <button className="btn_take_survey">Take Survey</button>
+                    <button className="btn_take_survey" onClick={()=>{this.goToSurvey()}}>Take Survey</button>
 
                 </div>
 

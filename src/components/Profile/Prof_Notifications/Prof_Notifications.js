@@ -5,15 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Prof_Notifications extends Component {
-    constructor(props) {
-        super(props);
-        // this.toggleEmail = this.toggleEmail.bind(this);
-    }
 
-    // componentDidMount() {
-
-    //     this.props.getUser().then((res) => console.log(res.value.id))
-    // }
     render() {
         const userID = this.props.userID;
         function toggleEmail(e) {
@@ -52,21 +44,21 @@ class Prof_Notifications extends Component {
 
 
                 <h3>Email</h3>
-                <label class="switch">
+                <label className="switch">
                     <input type="checkbox" id="email_check"  onChange={(e) => toggleEmail(e)} />
-                    <span class="slider round"></span>
+                    <span className="slider round"></span>
                 </label>
 
                 <h3>SMS Text</h3>
-                <label class="switch">
+                <label className="switch">
                     <input type="checkbox" id="text_check" onChange={(e) => toggleText(e)} />
-                    <span class="slider round"></span>
+                    <span className="slider round"></span>
                 </label>
 
                 <h3>In-App</h3>
-                <label class="switch">
+                <label className="switch">
                     <input type="checkbox" id="inApp_check" onChange={(e) => toggleInApp(e)} />
-                    <span class="slider round"></span>
+                    <span className="slider round"></span>
                 </label>
 
 

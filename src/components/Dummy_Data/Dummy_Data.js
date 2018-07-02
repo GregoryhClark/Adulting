@@ -62,14 +62,14 @@ class Dummy_Data extends Component {
     // }
 
     render() {
-        const user = this.props.user;
+        // const user = this.props.user;
         // console.log(this.props.userReminders)
 
-        let currentFrequencies = this.props.frequencies.length > 0 ? this.props.frequencies.map((frequency, index) => {
-            return (
-                <option key={index + 1}>{frequency.frequency}</option>
-            )
-        }) : <option>none</option>  ;
+        // let currentFrequencies = this.props.frequencies.length > 0 ? this.props.frequencies.map((frequency, index) => {
+        //     return (
+        //         <option key={index + 1}>{frequency.frequency}</option>
+        //     )
+        // }) : <option>none</option>  ;
 
 
         return (

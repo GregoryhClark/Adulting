@@ -18,7 +18,7 @@ module.exports = {
     getUserReminders: (req, res) => {
         const db = req.app.get('db');
         db.get_user_reminders([req.params.id])
-            .then((reminders) => { res.status(200).send(reminders) })
+            .then((reminders) => { res.status(200).send(reminders)})
             .catch(() => res.status(500).send())
     },
     getCountry: (req, res) => {

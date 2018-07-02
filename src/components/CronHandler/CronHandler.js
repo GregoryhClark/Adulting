@@ -18,8 +18,6 @@ class CronHandler {
         const db = app.get('db');
         // db.check_reminders([currentDate, currentHour, currentMinute]).then((reminders) => { 
         db.check_reminders().then((reminders) => {
-
-            console.log('here they are', reminders) /////
             reminders.map((reminder) => {
 
                 //send email to that user with the reminder details.
@@ -75,7 +73,7 @@ class CronHandler {
                 //Daily
                 if (reminder.frequency === 1) {
 
-                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 day', reminder.id]).then((clonedReminder) => {
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 day', reminder.id, reminder.instance_start_date]).then((clonedReminder) => {
 
 
                     })
@@ -84,7 +82,7 @@ class CronHandler {
                 //Weekly
                 else if (reminder.frequency === 2) {
 
-                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '7 days', reminder.id]).then((clonedReminder) => {
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '7 days', reminder.id, reminder.instance_start_date]).then((clonedReminder) => {
 
 
                     })
@@ -93,7 +91,7 @@ class CronHandler {
                 //Bi-weekly
                 else if (reminder.frequency === 3) {
 
-                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '14 days', reminder.id]).then((clonedReminder) => {
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '14 days', reminder.id, reminder.instance_start_date]).then((clonedReminder) => {
 
 
                     })
@@ -102,7 +100,7 @@ class CronHandler {
                 //Monthly
                 else if (reminder.frequency === 4) {
 
-                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 month', reminder.id]).then((clonedReminder) => {
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 month', reminder.id, reminder.instance_start_date]).then((clonedReminder) => {
 
 
                     })
@@ -111,7 +109,7 @@ class CronHandler {
                 //Yearly
                 else {
 
-                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 year', reminder.id]).then((clonedReminder) => {
+                    db.clone_reminder([reminder.user_id, reminder.reminder_template, reminder.alert_date, '1 year', reminder.id, reminder.instance_start_date]).then((clonedReminder) => {
 
 
                     })

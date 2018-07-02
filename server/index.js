@@ -122,7 +122,7 @@ app.put('/in_app_notifications_settings', controller.updateInAppPrefs)
 //Cron jobs
 //This is run every minute
 cron.schedule("* * * * *", function() {
-    // cronHandler.sendReminders(app)
+    cronHandler.sendReminders(app)
     console.log('Still running')
   });
 

@@ -11,9 +11,9 @@ $3,
 $4
 );
 
-insert into reminder_instances (reminder_template, alert_date, instance_start_date)
+insert into reminder_instances (user_id, reminder_template, alert_date, instance_start_date)
 values(
-
+$1,
 (select id from reminder_templates
 where created_by = $1
 order by id desc

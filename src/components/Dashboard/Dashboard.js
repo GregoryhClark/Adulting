@@ -25,7 +25,7 @@ class Dashboard extends Component {
             return (
                 <tr key ={index}>
                     <td>{reminder.title}</td>
-                    <td>{reminder.start_date.substring(0, 10)}</td>
+                    <td>{reminder.first_instance_date.substring(0, 10)}</td>
                     <td>{reminder.frequency}</td>
                 </tr>
             )

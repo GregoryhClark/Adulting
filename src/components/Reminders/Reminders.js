@@ -3,6 +3,7 @@ import './Reminders.css';
 import { getUser, getFrequencies, getUserReminders } from './../../ducks/users';
 import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
+import axios from 'axios';
 
 
 
@@ -13,22 +14,17 @@ class Reminders extends Component {
             reminderFrequency:0,
             reminderTitle:'',
             reminderStartDate:  new Date(),
-            reminderStartTime: '',
             // reminderEndDate: new Date(),
-            // reminderEndTime: '',
-            reminderAlertDate: new Date(),
-            reminderAlerTime: ''
+            alertBeforeIncrement:"minutes",
+            increment_num:0
+
 
         }
-        this.setAlertDate = this.setAlertDate.bind(this);
         this.setSelectFrequency = this.setSelectFrequency.bind(this);
         this.setRemTemplateTitle = this.setRemTemplateTitle.bind(this);
         this.setStartDate = this.setStartDate.bind(this);
-        this.setStartTime = this.setStartTime.bind(this);
         // this.setEndDate = this.setEndDate.bind(this);
-        // this.setEndTime = this.setEndTime.bind(this);
-        this.setAlertDate = this.setAlertDate.bind(this);
-        this.setAlertTime = this.setAlertTime.bind(this);
+        this.setAlertIncrement = this.setAlertIncrement.bind(this);
         this.createNewReminder = this.createNewReminder.bind(this);
        
     }
@@ -57,41 +53,43 @@ class Reminders extends Component {
     //set start date
     setStartDate(date){
         this.setState({
-            reminderStartDate:date
-        })
-    }
-    // set start Time
-    setStartTime(time){
-        this.setState({
-            reminderStartTime: time
+            reminderStartDate: new Date(date)
         })
     }
     //complete by date
-    setEndDate(date){
+    // setEndDate(date){
+    //     this.setState({
+    //         reminderEndDate: date
+    //     });
+    // }
+    
+    setAlertIncrement(increment){
         this.setState({
-            reminderEndDate: date
+            alertBeforeIncrement:increment
         });
     }
-    //set complete by time
-    setEndTime(time){
+    setNumIncrement(increment_num){
         this.setState({
-            reminderEndTime: time
+            increment_num:increment_num
         })
     }
-    //set alert date
-    setAlertDate(date){
-        this.setState({
-            reminderAlertDate:date
-        })
-    }
-    //set alert time
-    setAlertTime(time){
-        this.setState({
-            reminderAlertTime: time
-        })
-    }
+    
     createNewReminder(event){
         console.log(this.state)
+
+        let reminderObj = {
+            user_id : this.props.user.id,
+            first_instance_date : this.state.reminderStartDate,
+            frequency : this.state.reminderFrequency,
+            title : this.state.reminderTitle,
+            // end_date : this.state.reminderEndDate,
+            alert_increment : this.state.alertBeforeIncrement,
+            increment_num : this.state.increment_num
+        }
+        console.log(reminderObj)
+        axios.post(`/create_reminder`, reminderObj).then((res)=>{
+            console.log(res)
+        })
         event.preventDefault();
     }
 
@@ -105,12 +103,16 @@ class Reminders extends Component {
             )
         }) : <option>none</option>;
 
+        let alertIncrements= <select onChange={(e)=>this.setAlertIncrement(e.target.value)}>
+            <option value="minutes">Minutes</option>
+            <option value="hours">Hours</option>
+            <option value="days">Days</option>
+        </select>
+        
         return (
             <div className="Reminders_master">
                 <Topnav />
                 <h1>Welcome to the Reminders {this.props.user.first_name}!</h1>
-                <h3>Important things will be here soon.</h3>
-
                 <div className="dash_pic">
                     {user ? <img src={user.profile_img} alt='user profile' /> : null}
                 </div>
@@ -126,27 +128,16 @@ class Reminders extends Component {
                     </select>
                     <br />
                     Title:
-                    <input id="reminder_template_title_input" onChange={(e) => this.setRemTemplateTitle(e.target.value)} />
+                    <input id="reminder_template_title_input" required onChange={(e) => this.setRemTemplateTitle(e.target.value)} />
 
                     <br />
-                    Start date:
-                    <input type="date" id="start_date" onChange={(e) => this.setStartDate(e.target.value)}/>
+                    Start date/time:
+                    <input type="datetime-local" id="start_date"  max="9999-12-31T23:59" required onChange={(e) => this.setStartDate(e.target.value)}/>
                     <br />
-                    Start Time:
-                    <input type="time" id="start_time" onChange={(e) => this.setStartTime(e.target.value)}/>
-                    <br />
-                    {/* Complete by date:
-                    <input type="date" id="end_date" onChange={(e) => this.setEndDate(e.target.value)}/>
-                    <br />
-                    Complete by Time:
-                    <input type="time" id="end_time" onChange={(e) => this.setEndTime(e.target.value)}/>
-                    <br/> */}
-                    Alert date:
-                    <input type="date" id="alert_date" onChange={(e) => this.setAlertDate(e.target.value)}/>
-                    <br />
-                    Alert Time:
-                    <input type="time" id="alert_time" onChange={(e) => this.setAlertTime(e.target.value)}/>
+
+                    Notify me <input type="number" min="1" max = "60" onChange={(e)=>{this.setNumIncrement(e.target.value)}}/> {alertIncrements} before.
                     <br/>
+
                     <input type="submit" value="Submit" />
                         
                 </form>

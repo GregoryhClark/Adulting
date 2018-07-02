@@ -27,21 +27,32 @@ module.exports = {
             .then((country) => { res.status(200).send(country) })
             .catch(() => res.status(500).send())
     },
+    //This is depricated.... not being used
+    // addReminderTemplate: (req, res) => {
+    //     const db = req.app.get('db');
+    //     const { user, title, frequency } = req.body;
+    //     db.add_reminder_template([user, title, frequency])
+    //         .then((template) => { res.status(200).send(template) })
+    //         .catch(() => res.status(500).send())
+    // },
+    //This is depricated.... not being used
+    // addReminderInstance: (req, res) => {
+    //     const db = req.app.get('db');
+    //     const { userId, instanceId, startDate, startHour, startMin, endDate, endHour, endMin } = req.body;
+    //     db.add_reminder_instance([userId, instanceId, startDate, startHour, startMin, endDate, endHour, endMin])
+    //         .then((instance) => { res.status(200).send(instance) })
+    //         .catch(() => res.status(500).send())
+    // },
 
-    addReminderTemplate: (req, res) => {
+    create_reminder: (req, res) => {
         const db = req.app.get('db');
-        const { user, title, frequency } = req.body;
-        db.add_reminder_template([user, title, frequency])
-            .then((template) => { res.status(200).send(template) })
-            .catch(() => res.status(500).send())
-    },
-    addReminderInstance: (req, res) => {
-        const db = req.app.get('db');
-        const { userId, instanceId, startDate, startHour, startMin, endDate, endHour, endMin } = req.body;
-        db.add_reminder_instance([userId, instanceId, startDate, startHour, startMin, endDate, endHour, endMin])
+        const { user_id, frequency, title, first_instance_date, alert_increment, increment_num } = req.body;
+        db.add_reminder([user_id, frequency, title, first_instance_date, alert_increment, increment_num])
             .then((instance) => { res.status(200).send(instance) })
             .catch(() => res.status(500).send())
     },
+
+
     updateUserCountry: (req, res) => {
         const db = req.app.get('db');
         const { id, country } = req.body;

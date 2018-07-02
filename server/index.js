@@ -103,8 +103,12 @@ app.get('/reminders/:id', controller.getUserReminders)
 app.get('/country/id', controller.getCountry)
 app.get('/states', controller.getAllStates)
 
-app.post('/addReminderTemplate', controller.addReminderTemplate)
-app.post('/addReminderInstance', controller.addReminderInstance)
+//This is depricated.... not being used
+// app.post('/addReminderTemplate', controller.addReminderTemplate)
+//This is depricated.... not being used
+// app.post('/addReminderInstance', controller.addReminderInstance)
+//create new reminder template and instance
+app.post('/create_reminder', controller.create_reminder)
 
 app.put('/update_country', controller.updateUserCountry)
 app.put('/update_street', controller.updateUserStreet)
@@ -118,7 +122,7 @@ app.put('/in_app_notifications_settings', controller.updateInAppPrefs)
 //Cron jobs
 //This is run every minute
 cron.schedule("* * * * *", function() {
-    // cronHandler.checkTheReminder(app)
+    // cronHandler.sendReminders(app)
     console.log('Still running')
   });
 

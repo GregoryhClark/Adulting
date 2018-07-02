@@ -12,7 +12,7 @@ class CronHandler {
     // static checkReminder() {
     //     console.log('Hello world')
     // }
-    static checkTheReminder(app) {
+    static sendReminders(app) {
         //console.log("running a task every minute");
 
         const db = app.get('db');

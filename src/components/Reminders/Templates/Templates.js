@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 
 class Templates extends Component {
     render() {
-        // console.log(this.props.user)
-        console.log(this.props.templates)
 
         let templatesList = this.props.templates.map((template, index)=>{
-            return <tr key ={index}>
-                        <td>{template.title}</td>
-                        <td>{template.first_instance_date}</td>
-                        <td>{template.frequency}</td>
-                        <td><button>Edit</button></td>
-                    </tr>   
+
+            if(template.first_instance_date) {
+                return <tr key ={index}>
+                <td>{template.title}</td>
+                <td>{template.first_instance_date.substring(0, 10)}</td>
+                <td>{template.frequency}</td>
+                <td><button>Edit</button><button>Delete</button></td>
+            </tr> 
+            }
+            else {return null}
+
+  
         })
-
-
         return(
             <div className="Templates_master">
-                <h1>{this.props.user.first_name}</h1>
 
                 <table className="reminders_table">
                             <tbody>
@@ -34,6 +35,4 @@ class Templates extends Component {
         )
     }
 }
-
-
 export default (Templates)

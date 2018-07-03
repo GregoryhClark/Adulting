@@ -52,15 +52,7 @@ class Profile extends Component {
                             {this.state.selectedSubnav === "profile_subnav_personal" ? <Personal /> : null}
                         </div>
                     </div>
-                    <div>
-                        <h1>
-                            {/* {user} */}
-                        </h1>
-                    </div>
-
                 </div>
-
-
             </div>
         )
     }

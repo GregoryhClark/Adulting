@@ -6,18 +6,16 @@ class Incomplete extends Component {
 
         return (
             <div className="Incomplete_master">
-                <h1>Stuff here</h1>
 
-                <h1>Your Reminders:</h1>
+                <h1>Incomplete Tasks:</h1>
 
                 <table className="reminders_table">
                     <tbody>
                         <tr>
                             <th>Title</th>
-                            <th>Start Date</th>
+                            <th>Task Date</th>
                             <th>Frequency</th>
-                            <th>Completed</th>
-                            <th>Edit</th>
+                            {/* <th>Edit</th> */}
                         </tr>
                         {this.props.userRemindersList}
                     </tbody>
@@ -27,6 +25,4 @@ class Incomplete extends Component {
         )
     }
 }
-
-
 export default (Incomplete)

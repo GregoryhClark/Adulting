@@ -1,0 +1,34 @@
+.reminders_wrapper{
+    display:grid;
+    grid-template-columns: 25% 50% 25%;
+}
+.reminders_left_column{
+    display:grid;
+    grid-template-rows: 35px 350px
+}
+.reminders_pic{
+    grid-column: 1;
+    grid-row: 2;
+}
+.reminders_pic img{
+    height: 17vh;
+}
+.reminders_subnav_wrapper{
+    display: grid;
+    grid-template-rows: 35px 55px 35px 350px
+    
+}
+
+.reminders_subnav{
+    grid-row: 2;
+    background-color: lightslategrey;
+    padding:15px;
+    border-radius: 8px;
+}
+.reminders_subnav a{
+    padding:25px;
+    color: white;
+}
+.selected_data_category{
+    grid-row: 3;
+}

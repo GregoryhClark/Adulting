@@ -5,13 +5,15 @@ const initialState = {
     navbarSlide: false,
     frequencies: [],
     userReminders: [],
-    states:[]
+    states:[],
+    userReminderTemplates:[]
 }
 
 //action Types go here:
 const GET_USER = 'GET_USER';
 const GET_FREQUENCIES = 'GET_FREQUENCIES';
 const GET_USER_REMINDERS = 'GET_USER_REMINDERS';
+const GET_USER_REM_TEMPLATES = 'GET_USER_REM_TEMPLATES';
 const GET_STATES = 'GET_STATES';
 const UPDATE_USER_COUNTRY = 'UPDATE_USER_COUNTRY';
 const UPDATE_USER_STREET = 'UPDATE_USER_STREET';
@@ -27,6 +29,8 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { frequencies: action.payload });
         case GET_USER_REMINDERS + '_FULFILLED':
             return Object.assign({}, state, { userReminders: action.payload });
+        case GET_USER_REM_TEMPLATES + '_FULFILLED':
+            return Object.assign({}, state, { userReminderTemplates: action.payload });
         case UPDATE_USER_COUNTRY + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload} );
         case UPDATE_USER_STREET + '_FULFILLED':
@@ -71,6 +75,18 @@ export default function reducer(state = initialState, action) {
         return {
             type: GET_USER_REMINDERS,
             payload: userReminders
+        }
+    }
+    export function getUserReminderTemplates(id) {
+        let userReminderTemplates = axios.get(`/user_reminder_templates/${id}`)
+            .then(res => {
+                // console.log('Hit on users.js', res.data)
+                return res.data;
+                
+            })
+        return {
+            type: GET_USER_REM_TEMPLATES,
+            payload: userReminderTemplates
         }
     }
     export function updateUserCountry(updatedUser) {

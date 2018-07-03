@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './Reminders.css';
-import { getUser, getFrequencies, getUserReminders } from './../../ducks/users';
+import { getUser, getFrequencies, getUserReminders, getUserReminderTemplates } from './../../ducks/users';
 import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
-import axios from 'axios';
 import Incomplete from './Incomplete/Incomplete';
 import NewReminder from './NewReminder/NewReminder';
 import Templates from './Templates/Templates';
@@ -16,7 +15,7 @@ class Reminders extends Component {
         super(props)
         this.state = {
 
-            selectedSubnav: 'reminders_subnav_new_reminders'
+            selectedSubnav: 'reminders_subnav_templates'
         }
     }
 
@@ -25,7 +24,10 @@ class Reminders extends Component {
         this.props.getUser()
             .then((res) => {
                 // console.log('here it is!', res.value)
+                this.props.getUserReminderTemplates(res.value.id)
             })
+
+        
 
     }
 
@@ -60,8 +62,6 @@ class Reminders extends Component {
             )
         }) : <option>none</option>;
 
-
-        
         return (
             <div className="Reminders_master">
                 <Topnav />
@@ -80,7 +80,7 @@ class Reminders extends Component {
                         </div>
 
                         <div className="selected_data_category">
-                            {this.state.selectedSubnav === "reminders_subnav_templates" ? <Templates /> : null}
+                            {this.state.selectedSubnav === "reminders_subnav_templates" ? <Templates user={this.props.user} templates={this.props.userReminderTemplates}/> : null}
                             {this.state.selectedSubnav === "reminders_subnav_new_reminders" ? <NewReminder userID={this.props.user.id} currentFrequencies={currentFrequencies} /> : null}
                             {this.state.selectedSubnav === "reminders_subnav_incomplete" ? <Incomplete userRemindersList={userRemindersList}/> : null}
                             
@@ -97,12 +97,13 @@ class Reminders extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { user, frequencies, userReminders } = state
+    const { user, frequencies, userReminders, userReminderTemplates} = state
     return {
         user,
         frequencies,
-        userReminders
+        userReminders,
+        userReminderTemplates
     }
 }
 
-export default connect(mapStateToProps, { getUser, getFrequencies, getUserReminders })(Reminders)
+export default connect(mapStateToProps, { getUser, getFrequencies, getUserReminders, getUserReminderTemplates })(Reminders)

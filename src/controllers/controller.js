@@ -21,28 +21,19 @@ module.exports = {
             .then((reminders) => { res.status(200).send(reminders)})
             .catch(() => res.status(500).send())
     },
+    getUserReminderTemplates: (req, res) => {
+        const db = req.app.get('db');
+        console.log('hit here', req.params.id)
+        db.get_user_reminder_templates([req.params.id])
+            .then((templates) => { res.status(200).send(templates)})
+            .catch(() => res.status(500).send())
+    },
     getCountry: (req, res) => {
         const db = req.app.get('db');
         db.get_country([req.params.id])
             .then((country) => { res.status(200).send(country) })
             .catch(() => res.status(500).send())
     },
-    //This is depricated.... not being used
-    // addReminderTemplate: (req, res) => {
-    //     const db = req.app.get('db');
-    //     const { user, title, frequency } = req.body;
-    //     db.add_reminder_template([user, title, frequency])
-    //         .then((template) => { res.status(200).send(template) })
-    //         .catch(() => res.status(500).send())
-    // },
-    //This is depricated.... not being used
-    // addReminderInstance: (req, res) => {
-    //     const db = req.app.get('db');
-    //     const { userId, instanceId, startDate, startHour, startMin, endDate, endHour, endMin } = req.body;
-    //     db.add_reminder_instance([userId, instanceId, startDate, startHour, startMin, endDate, endHour, endMin])
-    //         .then((instance) => { res.status(200).send(instance) })
-    //         .catch(() => res.status(500).send())
-    // },
 
     create_reminder: (req, res) => {
         const db = req.app.get('db');

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
-import { getUser, getFrequencies, getUserReminders, getStates } from './../../ducks/users';
+import { getUser, getFrequencies, getUserReminders, getStates, getUserReminderTemplates } from './../../ducks/users';
 import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
 
@@ -12,9 +12,11 @@ class Dashboard extends Component {
         this.props.getUser()
             .then((res) => {
                 this.props.getUserReminders(res.value.id)
+                this.props.getUserReminderTemplates(res.value.id)
             })
         this.props.getFrequencies()
         this.props.getStates()
+        
 
     }
     goToSurvey(){
@@ -32,7 +34,9 @@ class Dashboard extends Component {
                     <td>{reminder.frequency}</td>
                 </tr>
             )
+            
         }
+        else {return null}
         });
         return (
             <div className="dashboard_master">
@@ -72,12 +76,13 @@ class Dashboard extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { user, userReminders, frequencies } = state
+    const { user, userReminders, frequencies, userReminderTemplates } = state
     return {
         user,
         frequencies,
-        userReminders
+        userReminders,
+        userReminderTemplates
     }
 }
 
-export default connect(mapStateToProps, { getUser, getFrequencies, getUserReminders, getStates })(Dashboard)
+export default connect(mapStateToProps, { getUser, getFrequencies, getUserReminders, getStates, getUserReminderTemplates })(Dashboard)

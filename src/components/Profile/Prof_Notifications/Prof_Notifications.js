@@ -12,8 +12,6 @@ class Prof_Notifications extends Component {
             textEnabled:true,
             inAppEnabled:true
         }
-
-        
     }
     componentWillMount(){
         this.setState({
@@ -61,18 +59,9 @@ class Prof_Notifications extends Component {
     }
 
     render() {
-        const userID = this.props;
-        console.log(userID)
-        
-
-
-
-
 
         return (
             <div className="prof_Notifications_master">
-
-
 
                 <h3>Email</h3>
                 <label className="switch">
@@ -91,11 +80,6 @@ class Prof_Notifications extends Component {
                     <input type="checkbox" id="inApp_check" checked={this.state.inAppEnabled} onChange={(e) => this.toggleInApp(e)} />
                     <span className="slider round"></span>
                 </label>
-
-
-
-
-
 
             </div>
         )

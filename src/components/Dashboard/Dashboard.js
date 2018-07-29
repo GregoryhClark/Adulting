@@ -12,6 +12,7 @@ class Dashboard extends Component {
         this.props.getUser()
             .then((res) => {
                 this.props.getUserReminders(res.value.id)
+                console.log(res.value)
                 this.props.getUserReminderTemplates(res.value.id)
             })
         this.props.getFrequencies()
@@ -25,6 +26,7 @@ class Dashboard extends Component {
 
     render() {
         const user = this.props.user;
+        // console.log(this.props.userReminders)
         let remindersToDisplay = this.props.userReminders.map((reminder, index) => {
             if(index < 5){
             return (
@@ -36,10 +38,14 @@ class Dashboard extends Component {
             )
             
         }
+
+        // let allTheStuff = 
+
         else {return null}
         });
         return (
             <div className="dashboard_master">
+            <div>
                 <Topnav />
                 <div className="dash_pic">
                     {user ? <img src={user.profile_img} alt='user profile' /> : null}
@@ -70,6 +76,7 @@ class Dashboard extends Component {
                             </tbody>
                         </table>
                     </div>
+                </div>
                 </div>
             </div>
         )

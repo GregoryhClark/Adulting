@@ -23,7 +23,6 @@ module.exports = {
     },
     getUserReminderTemplates: (req, res) => {
         const db = req.app.get('db');
-        console.log('hit here', req.params.id)
         db.get_user_reminder_templates([req.params.id])
             .then((templates) => { res.status(200).send(templates)})
             .catch(() => res.status(500).send())
@@ -92,6 +91,12 @@ module.exports = {
         const db = req.app.get('db');
         const { user_id, notify_inApp } = req.body;
         db.update_in_app_prefs([notify_inApp, user_id])
+            .then((state) => { res.status(200).send(state) })
+            .catch(() => res.status(500).send())
+    },
+    deleteTemplate:(req, res) => {
+        const db = req.app.get('db');
+        db.delete_template([req.params.id])
             .then((state) => { res.status(200).send(state) })
             .catch(() => res.status(500).send())
     },

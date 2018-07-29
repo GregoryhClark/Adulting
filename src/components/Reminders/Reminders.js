@@ -16,9 +16,7 @@ class Reminders extends Component {
             selectedSubnav: 'reminders_subnav_templates'
         }
     }
-
     componentDidMount() {
-
         this.props.getUser()
             .then((res) => {
                 // console.log('here it is!', res.value)

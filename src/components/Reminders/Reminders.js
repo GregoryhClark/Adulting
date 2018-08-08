@@ -67,7 +67,7 @@ class Reminders extends Component {
                         </div>
 
                         <div className="selected_data_category">
-                            {this.state.selectedSubnav === "reminders_subnav_templates" ? <Templates user={this.props.user} templates={this.props.userReminderTemplates} /> : null}
+                            {this.state.selectedSubnav === "reminders_subnav_templates" ? <Templates user={this.props.user} templates={this.props.userReminderTemplates} getTemplates={this.props.getUserReminderTemplates}/> : null}
                             {this.state.selectedSubnav === "reminders_subnav_new_reminders" ? <NewReminder userID={this.props.user.id} currentFrequencies={currentFrequencies} /> : null}
                             {this.state.selectedSubnav === "reminders_subnav_incomplete" ? <Incomplete userRemindersList={userRemindersList} /> : null}
 

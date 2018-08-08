@@ -1,2 +1,3 @@
-delete from reminder_templates
-where id = $1
+update reminder_templates
+set is_deleted = true 
+where id = $1;

@@ -117,8 +117,8 @@ app.put('/in_app_notifications_settings', controller.updateInAppPrefs)
 app.delete('/delete_template/:id', controller.deleteTemplate)
 
 
-//Cron jobs
-//This is run every minute
+// Cron jobs
+// This is run every minute
 // cron.schedule("* * * * *", function() {
 //     cronHandler.sendReminders(app)
 //     console.log('Still running')

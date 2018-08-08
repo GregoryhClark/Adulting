@@ -1,52 +1,55 @@
-import React, { Component } from 'react';
-import './Topnav.css';
-import { getUser } from './../../ducks/users';
-import { connect } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
+import TopHamMenu from './TopHamMenu/TopHamMenu';
+import './Topnav.css';
+
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  flex: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 const { REACT_APP_LOGOUT } = process.env
 
-class Topnav extends Component {
+function TestTopnav(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+            <TopHamMenu />
+          <Typography variant="title" color="inherit" className={classes.flex}>
+            Adulting
+          </Typography>
+          <div className="TopnavButtons">
+          <Button color="inherit"><a className = "unstyledA" href="/#/dashboard">Dashboard</a></Button>
+          <Button color="inherit"><a className = "unstyledA" href="/#/reminders">Reminders</a></Button>
+          <Button color="inherit"><a className = "unstyledA" href="/#/profile">Profile</a></Button>
+          <Button color="inherit"><a className = "unstyledA" href={REACT_APP_LOGOUT}>Logout</a></Button>
+          
+          </div>
 
-    componentDidMount() {
-
-        this.props.getUser()
-            .then((res) => {
-                // console.log('here it is!', res.value)
-            })
-
-    }
-    changeHamburger() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
-    render() {
-        return (
-            <div className="topnav_master">
-                <div className="topnav" id="myTopnav">
-                        <a href="/#/dashboard" className="active">Dashboard</a>
-                        <a href="/#/reminders" >Reminders</a>
-                        <a href="/#/profile" >Profile</a>
-                        {/* <a href="/#/surveys" >Surveys</a> */}
-                        {/* <a href="/#/dummy" >Dummy Data</a> */}
-                        {/* <a href="/#/dashboard" >Notifications</a> */}
-                        <a href={REACT_APP_LOGOUT}>Logout</a>
-                        <a href="javascript:void(0);" className="icon" onClick={this.changeHamburger}>&#9776;</a>
-                    </div>
-            </div>
-        )
-    }
-
-
-}
-function mapStateToProps(state) {
-    const { user } = state
-    return {
-        user
-    }
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
-export default connect(mapStateToProps, { getUser })(Topnav)
+TestTopnav.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(TestTopnav);

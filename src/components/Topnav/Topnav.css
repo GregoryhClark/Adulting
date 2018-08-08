@@ -12,6 +12,10 @@
     text-decoration: none;
     font-size: 17px;
   }
+  .unstyledA{
+    text-decoration: none;
+    color:white;
+  }
   
   .topnav a:hover {
     background-color: #F2F2F2;
@@ -36,7 +40,9 @@
   }
   
   @media screen and (max-width: 600px) {
-    .topnav.responsive {position: relative;}
+    .topnav.responsive {
+      position: relative;
+    }
     .topnav.responsive .icon {
       position: absolute;
       right: 0;
@@ -48,5 +54,15 @@
       display: block;
       text-align: left;
     }
+    .TopnavButtons{
+      display: none;
+    }
+
+  }
+  @media screen and (min-width:600px) {
+    .TopHamMenuMaster{
+      display: none;
+    }
+
   }
   

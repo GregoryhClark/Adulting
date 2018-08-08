@@ -39,12 +39,11 @@ class Dashboard extends Component {
             
         }
 
-        // let allTheStuff = 
-
         else {return null}
         });
         return (
             <div className="dashboard_master">
+            
             <div>
                 <Topnav />
                 <div className="dash_pic">

@@ -49,19 +49,28 @@ let userReminders = props.userReminders?  props.userReminders.map((reminder, ind
     }
     return null
 })
-:[
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    // createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    // createData('Eclair', 262, 16.0, 24, 6.0),
-    // createData('Cupcake', 305, 3.7, 67, 4.3),
-    // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
+:null;
 
-  let rows = userReminders.length>1? userReminders.slice(0,5)
+  let rows = userReminders.length > 0? userReminders.slice(0,5)
 
-  :[
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  ];
+  :null;
+
+  let rowCells = rows == null ? null
+
+  : 
+  rows.map(row => {
+    return (
+      <TableRow key={row.id}>
+
+        <TableCell component="th" scope="row">
+        {row.title}
+        </TableCell>
+        <TableCell >{row.firstInstanceDate}</TableCell>
+        <TableCell >{row.frequency}</TableCell>
+        {/* <TableCell numeric>{row.protein}</TableCell> */}
+      </TableRow>
+    );
+  })
 
   console.log(userReminders)
   console.log(rows)
@@ -79,19 +88,7 @@ let userReminders = props.userReminders?  props.userReminders.map((reminder, ind
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow key={row.id}>
-
-                <TableCell component="th" scope="row">
-                {row.title}
-                </TableCell>
-                <TableCell >{row.firstInstanceDate}</TableCell>
-                <TableCell >{row.frequency}</TableCell>
-                {/* <TableCell numeric>{row.protein}</TableCell> */}
-              </TableRow>
-            );
-          })}
+          {rowCells}
         </TableBody>
       </Table>
     </Paper>

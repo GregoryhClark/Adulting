@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getUser, getFrequencies, getUserReminders, getUserReminderTemplates } from '../../../ducks/users';
+import { connect } from 'react-redux';
+
 
 
 class NewReminder extends Component {
@@ -23,6 +26,10 @@ class NewReminder extends Component {
         this.setAlertIncrement = this.setAlertIncrement.bind(this);
         this.createNewReminder = this.createNewReminder.bind(this);
 
+    }
+    componentDidMount(){
+        this.props.getUser()
+        this.props.getFrequencies()
     }
     setSelectFrequency(freq) {
         this.setState({
@@ -64,7 +71,7 @@ class NewReminder extends Component {
         console.log(this.state)
 
         let reminderObj = {
-            user_id: this.props.userID,
+            user_id: this.props.user.id,
             first_instance_date: this.state.reminderStartDate,
             frequency: this.state.reminderFrequency,
             title: this.state.reminderTitle,
@@ -88,6 +95,12 @@ class NewReminder extends Component {
             <option value="days">Days</option>
         </select>
 
+        let currentFrequencies = this.props.frequencies.length > 0 ? this.props.frequencies.map((frequency, index) => {
+            return (
+                <option key={index + 1}>{frequency.frequency}</option>
+            )
+        }) : <option>none</option>;
+
 
         return (
             <div className="NewReminder_master">
@@ -97,7 +110,7 @@ class NewReminder extends Component {
                     Frequency:
                     <select name="" id="reminder_template_select" onChange={(e) => this.setSelectFrequency(e.target.value)}>
                         <option >Select</option>
-                        {this.props.currentFrequencies}
+                        {currentFrequencies}
                     </select>
                     <br />
                     Title:
@@ -119,5 +132,14 @@ class NewReminder extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    const { user, frequencies, userReminders, userReminderTemplates } = state
+    return {
+        user,
+        frequencies,
+        userReminders,
+        userReminderTemplates
+    }
+}
 
-export default (NewReminder)
+export default connect(mapStateToProps, { getUser, getFrequencies, getUserReminders, getUserReminderTemplates })(NewReminder)

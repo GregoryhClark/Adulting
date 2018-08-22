@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getUser, getFrequencies, getUserReminders, getUserReminderTemplates } from '../../../ducks/users';
+import { connect } from 'react-redux';
+
 // import Button from '@material-ui/core/Button';
 
 class Templates extends Component {
+
+    componentDidMount() {
+        this.props.getUser()
+            .then((res) => {
+                // console.log('here it is!', res.value)
+                this.props.getUserReminderTemplates(res.value.id)
+            })
+    }
 
     editTemplate(templateID) {
         alert(`Hah! Yeah... this feature isn't ready yet... sorry. ${templateID}`)
@@ -13,14 +24,16 @@ class Templates extends Component {
     deleteTemplate(templateID) {
         console.log("template id is", templateID)
         axios.delete(`/delete_template/${templateID}`).then(() => {
-            this.props.getTemplates(this.props.user.id)
+            this.props.getUserReminderTemplates(this.props.user.id)
         })
     }
 
     render() {
 
+        console.log(this.props)
 
-        let templatesList = this.props.templates.map((template, index) => {
+
+        let templatesList = this.props.userReminderTemplates.length? this.props.userReminderTemplates.map((template, index) => {
 
             if (template.first_instance_date && template.is_deleted === false) {
                 return <tr key={index}>
@@ -36,6 +49,7 @@ class Templates extends Component {
 
 
         })
+        :null
         return (
             <div className="Templates_master">
 
@@ -54,4 +68,14 @@ class Templates extends Component {
         )
     }
 }
-export default (Templates)
+function mapStateToProps(state) {
+    const { user, frequencies, userReminders, userReminderTemplates } = state
+    return {
+        user,
+        frequencies,
+        userReminders,
+        userReminderTemplates
+    }
+}
+
+export default connect(mapStateToProps, { getUser, getFrequencies, getUserReminders, getUserReminderTemplates })(Templates)

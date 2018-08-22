@@ -80,7 +80,6 @@ export default function reducer(state = initialState, action) {
     export function getUserReminderTemplates(id) {
         let userReminderTemplates = axios.get(`/user_reminder_templates/${id}`)
             .then(res => {
-                // console.log('Hit on users.js', res.data)
                 return res.data;
                 
             })

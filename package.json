@@ -24,7 +24,8 @@
     "react-swipeable-views": "^0.12.16",
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "url-parse": "^1.4.3"
   },
   "scripts": {
     "start": "react-scripts start",

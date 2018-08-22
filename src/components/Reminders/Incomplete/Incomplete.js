@@ -49,7 +49,7 @@ class Incomplete extends Component {
                             <th>Title</th>
                             <th>Task Date</th>
                             <th>Frequency</th>
-                            {/* <th>Edit</th> */}
+                            
                         </tr>
                         {userRemindersList}
                     </tbody>

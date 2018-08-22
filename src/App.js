@@ -6,7 +6,6 @@ import Reminders from './components/Reminders/Reminders';
 import Profile from './components/Profile/Profile';
 import Surveys from './components/Surveys/Surveys';
 import './App.css';
-import Dummy_Data from './components/Dummy_Data/Dummy_Data';
 
 class App extends Component {
   render() {
@@ -19,7 +18,6 @@ class App extends Component {
             <Route exact path = '/reminders' component={Reminders}/>
             <Route exact path = '/profile' component={Profile}/>
             <Route exact path = '/surveys' component={Surveys}/>
-            <Route exact path = '/dummy' component={Dummy_Data}/>
             
           </Switch>
         </HashRouter>

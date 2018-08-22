@@ -6,6 +6,7 @@ import Topnav from '../Topnav/Topnav';
 import Incomplete from './Incomplete/Incomplete';
 import NewReminder from './NewReminder/NewReminder';
 import Templates from './Templates/Templates';
+import axios from 'axios';
 
 
 class Reminders extends Component {
@@ -28,9 +29,19 @@ class Reminders extends Component {
             selectedSubnav: tab.id
         })
     }
+    handleComplete(id){
+        console.log(id)
+        let editObj = {
+            reminderId:id
+        }
+        axios.put('/mark_complete', editObj).then(()=>{
+            alert('Marked Complete')
+        })
+    }
 
     render() {
         const user = this.props.user;
+        console.log(this.props.userReminders)
         let userRemindersList = this.props.userReminders.map((reminder, index) => {
 
             return (
@@ -38,7 +49,7 @@ class Reminders extends Component {
                     <td>{reminder.title}</td>
                     <td>{reminder.first_instance_date.substring(0, 10)}</td>
                     <td>{reminder.frequency}</td>
-                    <td><button>Mark Complete</button></td>
+                    <td><button value={reminder.id} onClick={(e) => { this.handleComplete(e.target.value) }}>Mark Complete</button></td>
                 </tr>
             )
         });

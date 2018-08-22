@@ -113,16 +113,17 @@ app.put('/update_state', controller.updateUserState)
 app.put('/email_notifications_settings', controller.updateEmailPreferences)
 app.put('/text_notifications_settings', controller.updateTextPreference)
 app.put('/in_app_notifications_settings', controller.updateInAppPrefs)
+app.put('/mark_complete', controller.markComplete)
 
 app.delete('/delete_template/:id', controller.deleteTemplate)
 
 
 // Cron jobs
 // This is run every minute
-// cron.schedule("* * * * *", function() {
-//     cronHandler.sendReminders(app)
-//     console.log('Still running')
-//   });
+cron.schedule("* * * * *", function() {
+    cronHandler.sendReminders(app)
+    console.log('Still running')
+  });
 
 
 

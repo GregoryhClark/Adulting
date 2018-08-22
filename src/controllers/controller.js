@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-
+//change "state" to something else or get rid of it.
 module.exports = {
 
     getFrequencies: (req, res) => {
@@ -91,6 +91,13 @@ module.exports = {
         const db = req.app.get('db');
         const { user_id, notify_inApp } = req.body;
         db.update_in_app_prefs([notify_inApp, user_id])
+            .then((state) => { res.status(200).send(state) })
+            .catch(() => res.status(500).send())
+    },
+    markComplete:(req, res) => {
+        const db = req.app.get('db');
+        const{reminderId} = req.body;
+        db.mark_complete([reminderId])
             .then((state) => { res.status(200).send(state) })
             .catch(() => res.status(500).send())
     },

@@ -66,17 +66,7 @@ class Dashboard extends Component {
 
                     <div className="dash_table_wrapper">
                         <h1 className="main_h1">Coming Up</h1>
-                        {/* <table className="dash_table">
-                            <tbody>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Start Date</th>
-                                    <th>Frequency</th>
-                                </tr>
-                                {remindersToDisplay}
-                                
-                            </tbody>
-                        </table> */}
+
                         <DashTable userReminders = {this.props.userReminders} />
                     </div>
                 </div>

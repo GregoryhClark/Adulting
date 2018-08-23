@@ -9,3 +9,4 @@ $2,
 update reminder_instances
 set alerted = true 
 where id = $5;
+

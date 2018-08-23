@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { getUser, getFrequencies, getUserReminders, getUserReminderTemplates } from '../../../ducks/users';
 import { connect } from 'react-redux';
+import TemplatesTable from './TemplatesTable/TemplatesTable';
 
 // import Button from '@material-ui/core/Button';
 
@@ -30,9 +31,6 @@ class Templates extends Component {
 
     render() {
 
-        console.log(this.props)
-
-
         let templatesList = this.props.userReminderTemplates.length? this.props.userReminderTemplates.map((template, index) => {
 
             if (template.first_instance_date && template.is_deleted === false) {
@@ -52,6 +50,7 @@ class Templates extends Component {
         :null
         return (
             <div className="Templates_master">
+            <TemplatesTable reminderTemplates = {this.props.userReminderTemplates}/>
 
                 <table className="reminders_table">
                     <tbody>

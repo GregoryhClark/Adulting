@@ -57,9 +57,6 @@ function deleteTemplate(templateID) {
   }) 
 
   :[]
-  console.log(props.reminderTemplates)
-
-
 
   return (
     <Paper className={classes.root}>
@@ -82,7 +79,6 @@ function deleteTemplate(templateID) {
                 <TableCell >{row.startDate}</TableCell>
                 <TableCell >{row.frequency}</TableCell>
                 <TableCell >{row.editButton}{row.deleteButton}</TableCell>
-                <TableCell>{row.templateID}</TableCell> 
               </TableRow>
             );
           })}

@@ -32,7 +32,6 @@ class Templates extends Component {
         return (
             <div className="Templates_master">
             <TemplatesTable reminderTemplates = {this.props.userReminderTemplates}/>
-
             </div>
         )
     }

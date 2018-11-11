@@ -120,10 +120,10 @@ app.delete('/delete_template/:id', controller.deleteTemplate)
 
 // Cron jobs
 // This is run every minute
-cron.schedule("* * * * *", function() {
-    cronHandler.sendReminders(app)
-    console.log('Still running')
-  });
+// cron.schedule("* * * * *", function() {
+//     cronHandler.sendReminders(app)
+//     console.log('Still running')
+//   });
 
 
 

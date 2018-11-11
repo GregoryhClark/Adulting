@@ -31,28 +31,28 @@ class Templates extends Component {
 
     render() {
 
-        let templatesList = this.props.userReminderTemplates.length? this.props.userReminderTemplates.map((template, index) => {
+        // let templatesList = this.props.userReminderTemplates.length? this.props.userReminderTemplates.map((template, index) => {
 
-            if (template.first_instance_date && template.is_deleted === false) {
-                return <tr key={index}>
-                    <td>{template.title}</td>
-                    <td>{template.first_instance_date.substring(0, 10)}</td>
-                    <td>{template.frequency}</td>
-                    <td><button value={template.id} onClick={(e) => { this.editTemplate(e.target.value) }}>Edit</button>
-                        <button value={template.id} onClick={(e) => { this.deleteTemplate(e.target.value) }}>Delete</button>
-                    </td>
-                </tr>
-            }
-            else { return null }
+        //     if (template.first_instance_date && template.is_deleted === false) {
+        //         return <tr key={index}>
+        //             <td>{template.title}</td>
+        //             <td>{template.first_instance_date.substring(0, 10)}</td>
+        //             <td>{template.frequency}</td>
+        //             <td><button value={template.id} onClick={(e) => { this.editTemplate(e.target.value) }}>Edit</button>
+        //                 <button value={template.id} onClick={(e) => { this.deleteTemplate(e.target.value) }}>Delete</button>
+        //             </td>
+        //         </tr>
+        //     }
+        //     else { return null }
 
 
-        })
-        :null
+        // })
+        // :null
         return (
             <div className="Templates_master">
             <TemplatesTable reminderTemplates = {this.props.userReminderTemplates}/>
 
-                <table className="reminders_table">
+                {/* <table className="reminders_table">
                     <tbody>
                         <tr>
                             <th>Title</th>
@@ -62,7 +62,7 @@ class Templates extends Component {
                         </tr>
                         {templatesList}
                     </tbody>
-                </table>
+                </table> */}
             </div>
         )
     }

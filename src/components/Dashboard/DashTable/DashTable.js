@@ -47,6 +47,7 @@ function DashTable(props) {
         }
       )
     }
+    else return 'who am I?!';
 
   })
     : [];
@@ -67,27 +68,35 @@ function DashTable(props) {
         </TableRow>
       );
     })
-    : null;
+    : 'what am I?!';
   // console.log(props.userReminders)
   // console.log(userReminders)
   // console.log("rows -", rows)
+  let upNextTable = <div>
+    <Paper className={classes.root}>
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Reminder</TableCell>
+            <TableCell >Start Date</TableCell>
+            <TableCell >Frequency</TableCell>
+
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowCells}
+        </TableBody>
+      </Table>
+    </Paper>
+  </div>
+
+  let nothingUpcoming = <div>You have no reminders.</div>
+
+  let upNextDisplay = userReminders.length >= 1 ? upNextTable : nothingUpcoming;
+
   return (
     <div>
-      <Paper className={classes.root}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Reminder</TableCell>
-              <TableCell >Start Date</TableCell>
-              <TableCell >Frequency</TableCell>
-
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rowCells}
-          </TableBody>
-        </Table>
-      </Paper>
+      {upNextDisplay}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Reminders.css';
 import Topnav from '../Topnav/Topnav';
 import ReminderTabs from './ReminderTabs';

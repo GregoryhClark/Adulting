@@ -22,15 +22,18 @@ class Prof_Notifications extends Component {
         })
     }
     toggleEmail(e) {
+        
         this.setState({
             emailEnabled: !this.state.emailEnabled
         })
+       
         let toggleObj = {
             user_id: this.props.userID,
             notify_email: e.target.checked,
         }
         axios.put('/email_notifications_settings', toggleObj).then(() => {
             //should I have something here?
+            
         })
     }
     toggleText(e) {

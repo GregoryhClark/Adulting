@@ -21,19 +21,19 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
+// let id = 0;
+// function createData(name, calories, fat, carbs, protein) {
+//   id += 1;
+//   return { id, name, calories, fat, carbs, protein };
+// }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+// const rows = [
+//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+//   createData('Eclair', 262, 16.0, 24, 6.0),
+//   createData('Cupcake', 305, 3.7, 67, 4.3),
+//   createData('Gingerbread', 356, 16.0, 49, 3.9),
+// ];
 
 
 
@@ -50,7 +50,11 @@ function editTemplate(templateID) {
 function deleteTemplate(templateID) {
     console.log("template id is", templateID)
     axios.delete(`/delete_template/${templateID}`).then(() => {
-        this.props.getUserReminderTemplates(this.props.user.id)
+        // The following line worked when I didn't have MaterialUI 
+        // implemented and I could use Redux. I am refreshing the page now, 
+        // but this should be addressed later. There is likely a better way.
+        // this.props.getUserReminderTemplates(this.props.user.id)
+        window.location.reload()
     })
 }
 
@@ -61,8 +65,9 @@ function deleteTemplate(templateID) {
         title:template.title,
         startDate:template.first_instance_date.substring(0, 10),
         frequency:template.frequency,
-        editButton:<Button value={template.id} onClick={(e) => { editTemplate(e.target.value) }}variant="outlined">Edit</Button>,
-        deleteButton:<Button value={template.id} onClick={(e) => { deleteTemplate(e.target.value) }}color="secondary"variant="outlined">Delete</Button>
+        templateID:template.id,
+        editButton:<Button value={template.id} onClick={(e) => { editTemplate(template.id) }}variant="outlined">Edit</Button>,
+        deleteButton:<Button value={template.id} onClick={(e) => { deleteTemplate(template.id) }}color="secondary"variant="outlined">Delete</Button>
 
     }
   }) 
@@ -77,10 +82,10 @@ function deleteTemplate(templateID) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell >Calories</TableCell>
-            <TableCell >Fat (g)</TableCell>
-            <TableCell ></TableCell>
+            <TableCell>Title</TableCell>
+            <TableCell >Initial Date</TableCell>
+            <TableCell >Frequency</TableCell>
+            <TableCell >Options</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -93,6 +98,7 @@ function deleteTemplate(templateID) {
                 <TableCell >{row.startDate}</TableCell>
                 <TableCell >{row.frequency}</TableCell>
                 <TableCell >{row.editButton}{row.deleteButton}</TableCell>
+                <TableCell>{row.templateID}</TableCell> 
               </TableRow>
             );
           })}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { getUser, getFrequencies, getUserReminders, getUserReminderTemplates } from '../../../ducks/users';
 import { connect } from 'react-redux';
+import NewReminderUI from './NewReminderUI.js/NewReminderUI'
 
 
 
@@ -103,7 +104,13 @@ class NewReminder extends Component {
 
 
         return (
+
+
             <div className="NewReminder_master">
+            <NewReminderUI />
+            <br></br>
+            <br></br>
+
                 <form onSubmit={this.createNewReminder} className="new_reminder">
                     New Reminder:
                     <br />

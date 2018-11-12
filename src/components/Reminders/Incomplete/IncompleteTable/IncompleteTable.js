@@ -96,11 +96,9 @@ let incompleteDisplay = userReminders.length >= 1 ? incompleteTable : nothingInc
 
 return (
     <div>
-        Incomplete Tasks:
         {incompleteDisplay}
     </div>
 );
-
 }
 IncompleteTable.propTypes = {
     classes: PropTypes.object.isRequired,

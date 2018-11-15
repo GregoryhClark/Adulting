@@ -52,6 +52,7 @@ export default function reducer(state = initialState, action) {
             .then(res => {
                 return res.data;
             })
+        console.log('Pokemon')
         return {
             type: GET_USER,
             payload: userData

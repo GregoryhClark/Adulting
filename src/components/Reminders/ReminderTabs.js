@@ -74,9 +74,9 @@ class ReminderTabs extends Component {
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-          <TabContainer dir={theme.direction}><Templates/></TabContainer>
-          <TabContainer dir={theme.direction}><NewReminder/></TabContainer>
-          <TabContainer dir={theme.direction}><Incomplete/></TabContainer>
+          <TabContainer dir={theme.direction}><Templates /></TabContainer>
+          <TabContainer dir={theme.direction}><NewReminder /></TabContainer>
+          <TabContainer dir={theme.direction}><Incomplete /></TabContainer>
         </SwipeableViews>
       </div>
     );

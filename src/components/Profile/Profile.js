@@ -7,6 +7,8 @@ import Contact from './Contact/Contact';
 import Personal from './Personal/Personal';
 import ProfNotifications from './Prof_Notifications/Prof_Notifications';
 import Address from './Address/Address';
+import ProfileSubnav from './ProfileSubnav/ProfileSubnav';
+
 
 
 
@@ -36,6 +38,10 @@ class Profile extends Component {
                             {user ? <img src={user.profile_img} alt='user profile' /> : null}
                         </div>
                     </div>
+
+  {/* <ProfileSubnav userID={this.props.user.id }/>  */}
+
+  {/* <br/> */}
 
                     <div className="profile_subnav_wrapper">
                         <div className="profile_subnav">

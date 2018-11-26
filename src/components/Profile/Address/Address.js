@@ -4,6 +4,7 @@ import './Address.css';
 import { getUser, updateUserCountry, updateUserStreet, updateUserCity, getStates } from './../../../ducks/users';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import AddressUI from './AddressUI/AddressUI';
 
 
 class Address extends Component {
@@ -115,6 +116,9 @@ class Address extends Component {
         
         return (
             <div className="address_master">
+
+            <AddressUI />
+            <br></br>
                 <h1>Address stuff</h1>
                 <div className="user_country">
                     <h3>Country:</h3>

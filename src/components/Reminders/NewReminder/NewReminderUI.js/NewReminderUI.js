@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 // import { Typography, Divider } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
@@ -105,10 +105,6 @@ function NewReminderUI(props) {
             </Card>
         </div>
             )
-        
-    NewReminderUI.PropTypes = {
-                classes: PropTypes.object.isRequired,
-        }
     
     }
     export default withStyles(styles)(NewReminderUI);

@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 class Personal extends Component {
     render() {
 
-console.log(this.props.user)
 let personalDOB = this.props.user.id > 0 ? this.props.user.dob.substring(0, 10) : "No DOB";
 
         return(

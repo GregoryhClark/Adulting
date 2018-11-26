@@ -3,14 +3,7 @@ import './Profile.css';
 import { getUser } from './../../ducks/users';
 import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
-import Contact from './Contact/Contact';
-import Personal from './Personal/Personal';
-import ProfNotifications from './Prof_Notifications/Prof_Notifications';
-import Address from './Address/Address';
 import ProfileSubnav from './ProfileSubnav/ProfileSubnav';
-
-
-
 
 class Profile extends Component {
     constructor() {
@@ -41,24 +34,6 @@ class Profile extends Component {
                     </div>{/*left_column  */}
 
                     <ProfileSubnav user={this.props.user} />
-
-                    <br />
-
-                    {/* <div className="profile_subnav_wrapper">
-                        <div className="profile_subnav">
-                            <a href="http://localhost:3000/#/profile" id="profile_subnav_contact" onClick={(e) => { this.selectSubnavTab(e.target) }}>Contact</a>
-                            <a href="http://localhost:3000/#/profile" id="profile_subnav_notifications" onClick={(e) => { this.selectSubnavTab(e.target) }}>Notifications</a>
-                            <a href="http://localhost:3000/#/profile" id="profile_subnav_address" onClick={(e) => { this.selectSubnavTab(e.target) }}>Address</a>
-                            <a href="http://localhost:3000/#/profile" id="profile_subnav_personal" onClick={(e) => { this.selectSubnavTab(e.target) }}>Personal</a>
-                        </div>
-
-                        <div className="selected_data_category">
-                            {this.state.selectedSubnav === "profile_subnav_contact" ? <Contact /> : null}
-                            {this.state.selectedSubnav === "profile_subnav_notifications" ? <ProfNotifications userID={this.props.user.id} /> : null}
-                            {this.state.selectedSubnav === "profile_subnav_address" ? <Address /> : null}
-                            {this.state.selectedSubnav === "profile_subnav_personal" ? <Personal /> : null}
-                        </div>
-                    </div> */}
                 </div>
             </div>
         )

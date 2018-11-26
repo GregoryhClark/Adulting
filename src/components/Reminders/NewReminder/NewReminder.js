@@ -104,8 +104,6 @@ class NewReminder extends Component {
 
 
         return (
-
-
             <div className="NewReminder_master">
             <NewReminderUI />
             <br></br>

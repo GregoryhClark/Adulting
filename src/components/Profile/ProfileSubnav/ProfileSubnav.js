@@ -35,7 +35,7 @@ class ProfileSubnav extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: 2,//Change this later
+            value: 1,//Change this later
         };
     }
 
@@ -76,9 +76,9 @@ class ProfileSubnav extends Component {
                     onChangeIndex={this.handleChangeIndex}
                 >
                     <TabContainer dir={theme.direction}><Contact /></TabContainer>
-                    <TabContainer dir={theme.direction}><Personal /></TabContainer> 
+                    <TabContainer dir={theme.direction}><Personal user = {this.props.user}/></TabContainer> 
                     <TabContainer dir={theme.direction}><Address /></TabContainer>
-                    <TabContainer dir={theme.direction}><ProfNotifications userID = {this.props.userID} /></TabContainer>
+                    <TabContainer dir={theme.direction}><ProfNotifications userID = {this.props.user.id} /></TabContainer>
 
                 </SwipeableViews>
             </div>

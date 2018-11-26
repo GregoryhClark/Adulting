@@ -29,6 +29,7 @@ class Profile extends Component {
     render() {
         let user = this.props.user;
         // console.log('profile user is ', user)
+    
         return (
             <div className="Profile_master">
                 <Topnav />
@@ -37,9 +38,9 @@ class Profile extends Component {
                         <div className="profile_pic">
                             {user ? <img src={user.profile_img} alt='user profile' /> : null}
                         </div>
-                    </div>{/*left_column*/}
+                    </div>{/*left_column  */}
 
-                    <ProfileSubnav userID={this.props.user.id} />
+                    <ProfileSubnav user={this.props.user} />
 
                     <br />
 

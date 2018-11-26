@@ -37,13 +37,13 @@ class Profile extends Component {
                         <div className="profile_pic">
                             {user ? <img src={user.profile_img} alt='user profile' /> : null}
                         </div>
-                    </div>
+                    </div>{/*left_column*/}
 
-  {/* <ProfileSubnav userID={this.props.user.id }/>  */}
+                    <ProfileSubnav userID={this.props.user.id} />
 
-  {/* <br/> */}
+                    <br />
 
-                    <div className="profile_subnav_wrapper">
+                    {/* <div className="profile_subnav_wrapper">
                         <div className="profile_subnav">
                             <a href="http://localhost:3000/#/profile" id="profile_subnav_contact" onClick={(e) => { this.selectSubnavTab(e.target) }}>Contact</a>
                             <a href="http://localhost:3000/#/profile" id="profile_subnav_notifications" onClick={(e) => { this.selectSubnavTab(e.target) }}>Notifications</a>
@@ -57,7 +57,7 @@ class Profile extends Component {
                             {this.state.selectedSubnav === "profile_subnav_address" ? <Address /> : null}
                             {this.state.selectedSubnav === "profile_subnav_personal" ? <Personal /> : null}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

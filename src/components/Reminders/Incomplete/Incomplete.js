@@ -12,10 +12,11 @@ class Incomplete extends Component {
             })
     }
     render() {
+        console.log(this.props.userReminders)
         return (
             <div className="Incomplete_master">
                 <h1>Incomplete Tasks:</h1>
-                {<IncomleteTable userReminders = {this.props.userReminders}/>}
+                {<IncomleteTable getUserReminders = {this.props.getUserReminders} userReminders = {this.props.userReminders}/>}
             </div>
         )
     }

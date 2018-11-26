@@ -24,32 +24,40 @@ const styles = theme => ({
 
 function IncompleteTable(props) {
     const { classes } = props;
+    let getUserReminders = props.getUserReminders;
 
-    function handleComplete(id){
-        console.log(id)
+    function handleComplete(reminderID, userID){
+        console.log(reminderID)
         let editObj = {
-            reminderId:id
+            reminderId:reminderID
         }
         axios.put('/mark_complete', editObj).then(()=>{
-            this.props.getUserReminders(this.props.user.id)
+            getUserReminders(userID)
             alert('Marked Complete')
         })
     }
 
-    let userReminders = props.userReminders.length >= 1 ? props.userReminders.filter((reminder, index) => {
-        if (reminder.is_deleted === false && reminder.completed === false) {
-            return (
-                {
-                    id: index + 1,
-                    title: reminder.title,
-                    firstInstanceDate: reminder.first_instance_date.substring(0, 10),
-                    frequency: reminder.frequency
-                }
-            )
-        }
-        else return 'how am I?!';
-    })
+    // console.log(props.userReminders);
+
+    // let userReminders = props.userReminders.length >= 1 ? props.userReminders.filter((reminder, index) => {
+    //     if (reminder.is_deleted === false && reminder.completed === false) {
+    //         return (
+    //             {
+    //                 id: index + 1,
+    //                 title: reminder.title,
+    //                 firstInstanceDate: reminder.first_instance_date.substring(0, 10),
+    //                 frequency: reminder.frequency
+    //             }
+    //         )
+    //     }
+    //     else return 'how am I?!';
+    // })
+    //     : [];
+
+    let userReminders = props.userReminders.length >= 1 ? props.userReminders.filter((reminder, index) => reminder.completed === false)
         : [];
+
+    console.log(userReminders)
 
     let rows = userReminders.length >= 1 ? userReminders.slice(0,15)
         : [];
@@ -64,7 +72,7 @@ function IncompleteTable(props) {
                     </TableCell>
                     <TableCell >{row.first_instance_date.substring(0, 10)}</TableCell>
                     <TableCell >{row.frequency}</TableCell>
-                    <TableCell><Button>Mark Complete</Button></TableCell>
+                    <TableCell><Button onClick={(e) => { handleComplete(row.id, row.user_id)}}>Mark Complete</Button></TableCell>
                 </TableRow>
             );
         })

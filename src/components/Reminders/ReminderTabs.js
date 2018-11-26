@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import Incomplete from './Incomplete/Incomplete';
 import NewReminder from './NewReminder/NewReminder';
 import Templates from './Templates/Templates';
-// import TopNav from '../Topnav/Topnav';
 import './Reminders.css';
 
 
@@ -37,7 +36,7 @@ class ReminderTabs extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: 1,///Change this back to 0
+      value: 2,///Change this back to 0
     };
   }
 

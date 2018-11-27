@@ -36,7 +36,7 @@ class ReminderTabs extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: 2,///Change this back to 0
+      value: 0,///Change this back to 0
     };
   }
 

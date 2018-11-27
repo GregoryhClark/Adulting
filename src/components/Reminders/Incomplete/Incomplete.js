@@ -12,7 +12,6 @@ class Incomplete extends Component {
             })
     }
     render() {
-        console.log(this.props.userReminders)
         return (
             <div className="Incomplete_master">
                 <h1>Incomplete Tasks:</h1>

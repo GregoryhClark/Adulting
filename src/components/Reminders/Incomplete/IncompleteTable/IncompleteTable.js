@@ -57,8 +57,6 @@ function IncompleteTable(props) {
     let userReminders = props.userReminders.length >= 1 ? props.userReminders.filter((reminder, index) => reminder.completed === false)
         : [];
 
-    console.log(userReminders)
-
     let rows = userReminders.length >= 1 ? userReminders.slice(0,15)
         : [];
 

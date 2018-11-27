@@ -31,6 +31,9 @@ function editTemplate(templateID) {
     console.log("template id is", templateID)
     // axios.put
 }
+function editClick(templateID){
+
+}
 function deleteTemplate(templateID) {
     console.log("template id is", templateID)
     axios.delete(`/delete_template/${templateID}`).then(() => {

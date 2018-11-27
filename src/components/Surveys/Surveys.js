@@ -3,6 +3,7 @@ import './Surveys.css';
 import { getUser } from './../../ducks/users';
 import { connect } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
+import SurveysSubnav from './SurveysSubnav/SurveysSubnav';
 
 
 class Surveys extends Component {
@@ -21,8 +22,8 @@ class Surveys extends Component {
         return (
             <div className="Surveys_master">
                 <Topnav/>
+                <SurveysSubnav user = {this.props.user}/>
                 <h1>Welcome to the Surveys {this.props.user.first_name}!</h1>
-                <h3>Important things will be here soon.</h3>
             </div>
         )
     }

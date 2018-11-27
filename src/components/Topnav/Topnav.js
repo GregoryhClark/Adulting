@@ -37,6 +37,7 @@ function TestTopnav(props) {
           <Button color="inherit"><a className = "unstyledA" href="/#/dashboard">Dashboard</a></Button>
           <Button color="inherit"><a className = "unstyledA" href="/#/reminders">Reminders</a></Button>
           <Button color="inherit"><a className = "unstyledA" href="/#/profile">Profile</a></Button>
+          <Button color="inherit"><a className = "unstyledA" href="/#/surveys">Surveys</a></Button>
           <Button color="inherit"><a className = "unstyledA" href={REACT_APP_LOGOUT}>Logout</a></Button>
           
           </div>
